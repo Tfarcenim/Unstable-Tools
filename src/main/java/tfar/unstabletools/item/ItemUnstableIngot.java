@@ -61,14 +61,18 @@ public class ItemUnstableIngot extends Item implements IItemColored {
   public static void playertick(TickEvent.PlayerTickEvent e) {
 
     if (e.phase == TickEvent.Phase.START) return;
-
-    AbstractContainerMenu container = e.player.containerMenu;
-    MenuType<?> type = ObfuscationReflectionHelper.getPrivateValue(AbstractContainerMenu.class,container,"menuType");
-    if (type == null || !Config.ServerConfig.allowed_containers.get().contains(type.getRegistryName().toString()))return;
-
     Level world = e.player.level;
 
     if (world.isClientSide)return;
+
+    AbstractContainerMenu container = e.player.containerMenu;
+    try {
+      MenuType<?> type = container.getType();
+      if (type == null || !Config.ServerConfig.allowed_containers.get().contains(type.getRegistryName().toString()))return;
+    } catch (Exception err) {
+      return;
+    }
+
     boolean explode = false;
 
     List<Slot> inventorySlots = container.slots;
