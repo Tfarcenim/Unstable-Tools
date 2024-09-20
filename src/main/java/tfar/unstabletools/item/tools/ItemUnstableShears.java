@@ -27,6 +27,11 @@ public class ItemUnstableShears extends ShearsItem {
     return super.canApplyAtEnchantingTable(stack,enchantment) || enchantment == Enchantments.SILK_TOUCH;
   }
 
+  @Override
+  public boolean isEnchantable(ItemStack pStack) {
+    return true;
+  }
+
   //doesn't work
   /*@SubscribeEvent
   @SuppressWarnings("unused")

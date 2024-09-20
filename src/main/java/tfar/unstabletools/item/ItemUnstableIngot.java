@@ -2,11 +2,15 @@ package tfar.unstabletools.item;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.core.Registry;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -16,13 +20,13 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import tfar.unstabletools.UnstableTools;
 import tfar.unstabletools.crafting.Config;
 
 import javax.annotation.Nullable;
@@ -31,8 +35,7 @@ import java.util.List;
 @Mod.EventBusSubscriber
 public class ItemUnstableIngot extends Item implements IItemColored {
 
-  public static final DamageSource DIVIDE_BY_DIAMOND = (new DamageSource("divide_by_diamond").bypassArmor());
-  public static final DamageSource ESCAPE_DIVIDE_BY_DIAMOND = (new DamageSource("escape_divide_by_diamond").bypassArmor());
+  public static final ResourceKey<DamageType> DIVIDE_BY_DIAMOND = ResourceKey.create(Registries.DAMAGE_TYPE, UnstableTools.id("divide_by_diamond"));
 
   public ItemUnstableIngot(Properties properties) {
     super(properties);
@@ -118,7 +121,7 @@ public class ItemUnstableIngot extends Item implements IItemColored {
   public static void boom(Player player) {
     Level world = player.level;
     world.explode(null, player.getX(), player.getY(), player.getZ(), 1, Level.ExplosionInteraction.NONE);
-    player.hurt(DIVIDE_BY_DIAMOND, 100);
+    player.hurt(player.damageSources().source(DIVIDE_BY_DIAMOND), 100);
   }
 
   @Override

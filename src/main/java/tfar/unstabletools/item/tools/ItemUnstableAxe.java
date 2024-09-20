@@ -1,6 +1,5 @@
 package tfar.unstabletools.item.tools;
 
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -11,6 +10,7 @@ import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.Level;
+import tfar.unstabletools.UnstableTools;
 
 public class ItemUnstableAxe extends AxeItem {
 
@@ -29,10 +29,15 @@ public class ItemUnstableAxe extends AxeItem {
     if (entity instanceof LivingEntity) {
       LivingEntity livingEntity = (LivingEntity) entity;
       if (livingEntity.getMobType() == MobType.UNDEAD)
-        entity.hurt(DamageSource.playerAttack(player), 8);
-      else livingEntity.heal(8);
+        entity.hurt(player.damageSources().playerAttack(player), UnstableTools.UNSTABLE.getAttackDamageBonus());
+      else livingEntity.heal(UnstableTools.UNSTABLE.getAttackDamageBonus());
       player.addEffect(new MobEffectInstance(MobEffects.HUNGER,20,4));
     }
+    return true;
+  }
+
+  @Override
+  public boolean isEnchantable(ItemStack pStack) {
     return true;
   }
 }

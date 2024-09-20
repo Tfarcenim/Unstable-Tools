@@ -1,5 +1,6 @@
 package tfar.unstabletools;
 
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
@@ -35,6 +36,8 @@ import tfar.unstabletools.init.ModRecipeSerializer;
 import tfar.unstabletools.item.tools.ItemUnstableShears;
 
 import javax.annotation.Nonnull;
+
+import java.util.EnumMap;
 
 import static net.minecraftforge.common.MinecraftForge.EVENT_BUS;
 
@@ -91,16 +94,21 @@ public class UnstableTools {
 
   public static class UnstableArmorMaterial implements ArmorMaterial {
 
-    private static int[] array = new int[]{4, 7, 9, 4};
+      static EnumMap<ArmorItem.Type, Integer> map = Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> {
+      enumMap.put(ArmorItem.Type.BOOTS, 4);
+      enumMap.put(ArmorItem.Type.LEGGINGS, 7);
+      enumMap.put(ArmorItem.Type.CHESTPLATE, 9);
+      enumMap.put(ArmorItem.Type.HELMET, 4);
+    });
 
     @Override
-    public int getDurabilityForSlot(@Nonnull EquipmentSlot slotIn) {
+    public int getDurabilityForType(@Nonnull ArmorItem.Type slotIn) {
       return 0;
     }
 
     @Override
-    public int getDefenseForSlot(@Nonnull EquipmentSlot slot) {
-      return array[slot.getIndex()];
+    public int getDefenseForType(@Nonnull ArmorItem.Type slot) {
+      return map.get(slot);
     }
 
     @Override
@@ -178,7 +186,7 @@ public class UnstableTools {
       event.registerCreativeModeTab(new ResourceLocation(MODID,MODID),
               builder -> builder.title(Component.translatable("itemGroup.unstabletools"))
                       .icon(ModItems.unstable_pickaxe::getDefaultInstance)
-                      .displayItems((pEnabledFeatures, pOutput, pDisplayOperatorCreativeTab) -> {
+                      .displayItems((pEnabledFeatures, pOutput) -> {
                         for (Item item : ModItems.getItems()) {
                           pOutput.accept(item);
                         }
@@ -208,6 +216,10 @@ public class UnstableTools {
       ItemStack itemStackToDrop = new ItemStack(ModItems.inactive_division_sign);
       event.getDrops().add(new ItemEntity(entity.level, entity.getX(), entity.getY(), entity.getZ(), itemStackToDrop));
     }
+  }
+
+  public static ResourceLocation id(String path) {
+    return new ResourceLocation(MODID,path);
   }
 
 }

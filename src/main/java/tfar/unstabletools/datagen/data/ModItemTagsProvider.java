@@ -12,7 +12,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class ModItemTagsProvider extends ItemTagsProvider {
     public ModItemTagsProvider(PackOutput p_126511_, CompletableFuture<HolderLookup.Provider> pLookupProvider, BlockTagsProvider blockTagsProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(p_126511_,pLookupProvider,blockTagsProvider, UnstableTools.MODID, existingFileHelper);
+        super(p_126511_,pLookupProvider,blockTagsProvider.contentsGetter(), UnstableTools.MODID, existingFileHelper);
     }
 
     @Override

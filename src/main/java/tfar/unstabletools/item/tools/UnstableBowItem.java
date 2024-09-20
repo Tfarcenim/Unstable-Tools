@@ -97,6 +97,11 @@ public class UnstableBowItem extends BowItem {
   }
 
   @Override
+  public boolean isEnchantable(ItemStack pStack) {
+    return true;
+  }
+
+  @Override
   public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
     return enchantment != Enchantments.INFINITY_ARROWS && super.canApplyAtEnchantingTable(stack,enchantment);
   }
