@@ -35,6 +35,11 @@ public class ItemUnstableAxe extends AxeItem {
     }
     return true;
   }
+
+  @Override
+  public boolean isEnchantable(ItemStack pStack) {
+    return true;
+  }
 }
 
 

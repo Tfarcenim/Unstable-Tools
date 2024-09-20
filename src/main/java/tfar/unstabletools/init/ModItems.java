@@ -29,16 +29,51 @@ public class ModItems {
     public static final Item unstable_block = new BlockItem(ModBlocks.unstable_block, properties);
     public static final Item unstable_bow = new UnstableBowItem(properties);
     public static final Item unstable_fishing_rod = new FishingRodItem(properties);
-    public static final Item unstable_pickaxe = new PickaxeItem(UNSTABLE, 1, -2.8f, properties);
+    public static final Item unstable_pickaxe = new PickaxeItem(UNSTABLE, 1, -2.8f, properties) {
+        @Override
+        public boolean isEnchantable(ItemStack pStack) {
+            return true;
+        }
+    };
     public static final Item unstable_hoe = new ItemUnstableHoe(UNSTABLE, -4, 0, properties);
     public static final Item unstable_shears = new ItemUnstableShears(properties);
-    public static final Item unstable_shovel = new ShovelItem(UNSTABLE, 3, -1.5f, properties);
-    public static final Item unstable_sword = new SwordItem(UNSTABLE, 3, -2.4f, properties);
+    public static final Item unstable_shovel = new ShovelItem(UNSTABLE, 3, -1.5f, properties) {
+        @Override
+        public boolean isEnchantable(ItemStack pStack) {
+            return true;
+        }
+    };
+    public static final Item unstable_sword = new SwordItem(UNSTABLE, 3, -2.4f, properties) {
+        @Override
+        public boolean isEnchantable(ItemStack pStack) {
+            return true;
+        }
+    };
 
-    public static final Item unstable_helmet = new ArmorItem(UNSTABLE_ARMOR, EquipmentSlot.HEAD, properties);
-    public static final Item unstable_chestplate = new ArmorItem(UNSTABLE_ARMOR, EquipmentSlot.CHEST, properties);
-    public static final Item unstable_leggings = new ArmorItem(UNSTABLE_ARMOR, EquipmentSlot.LEGS, properties);
-    public static final Item unstable_boots = new ArmorItem(UNSTABLE_ARMOR, EquipmentSlot.FEET, properties);
+    public static final Item unstable_helmet = new ArmorItem(UNSTABLE_ARMOR, EquipmentSlot.HEAD, properties) {
+        @Override
+        public boolean isEnchantable(ItemStack pStack) {
+            return true;
+        }
+    };
+    public static final Item unstable_chestplate = new ArmorItem(UNSTABLE_ARMOR, EquipmentSlot.CHEST, properties) {
+        @Override
+        public boolean isEnchantable(ItemStack pStack) {
+            return true;
+        }
+    };
+    public static final Item unstable_leggings = new ArmorItem(UNSTABLE_ARMOR, EquipmentSlot.LEGS, properties) {
+        @Override
+        public boolean isEnchantable(ItemStack pStack) {
+            return true;
+        }
+    };
+    public static final Item unstable_boots = new ArmorItem(UNSTABLE_ARMOR, EquipmentSlot.FEET, properties) {
+        @Override
+        public boolean isEnchantable(ItemStack pStack) {
+            return true;
+        }
+    };
 
     public static Set<Item> getItems() {
         if (ITEMS.isEmpty()) {

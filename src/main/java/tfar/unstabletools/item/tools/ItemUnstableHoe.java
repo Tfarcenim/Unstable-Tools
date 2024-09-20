@@ -8,6 +8,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -53,5 +54,10 @@ public class ItemUnstableHoe extends HoeItem {
       }
     }
     return InteractionResult.PASS;
+  }
+
+  @Override
+  public boolean isEnchantable(ItemStack pStack) {
+    return true;
   }
 }
