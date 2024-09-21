@@ -21,45 +21,45 @@ public class ModItems {
     static Item.Properties properties = new Item.Properties();
     public static final Item ethereal_glass = new BlockItem(ModBlocks.ethereal_glass, properties);
     public static final Item unstable_block = new BlockItem(ModBlocks.unstable_block, properties);
-    public static final Item unstable_ingot = new UnstableIngotItem(properties);
+    public static final Item UNSTABLE_INGOT = new UnstableIngotItem(properties);
     public static final Item division_sign = new DivisionSignItem(properties);
     public static final Item stable_division_sign = new StableDivisionSignItem(new Item.Properties().craftRemainder(ModItems.stable_division_sign));
-    public static final Item unstable_axe = new ItemUnstableAxe(UNSTABLE, 9, -3, properties);
-    public static final Item unstable_bow = new UnstableBowItem(properties);
-    public static final Item unstable_fishing_rod = new FishingRodItem(properties){  @Override
+    public static final Item UNSTABLE_AXE = new ItemUnstableAxe(UNSTABLE, 9, -3, properties);
+    public static final Item UNSTABLE_BOW = new UnstableBowItem(properties);
+    public static final Item UNSTABLE_FISHING_ROD = new FishingRodItem(properties){  @Override
     public boolean isEnchantable(ItemStack pStack) {
         return true;
     }};
-    public static final Item unstable_pickaxe = new PickaxeItem(UNSTABLE, 1, -2.8f, properties){
+    public static final Item UNSTABLE_PICKAXE = new PickaxeItem(UNSTABLE, 1, -2.8f, properties){
         @Override
         public boolean isEnchantable(ItemStack pStack) {
             return true;
         }
     };
-    public static final Item unstable_hoe = new ItemUnstableHoe(UNSTABLE, -4, 0, properties);
-    public static final Item unstable_shears = new ItemUnstableShears(properties);
-    public static final Item unstable_shovel = new ShovelItem(UNSTABLE, 3, -1.5f, properties);
-    public static final Item unstable_sword = new SwordItem(UNSTABLE, 3, -2.4f, properties);
+    public static final Item UNSTABLE_HOE = new ItemUnstableHoe(UNSTABLE, -4, 0, properties);
+    public static final Item UNSTABLE_SHEARS = new ItemUnstableShears(properties);
+    public static final Item UNSTABLE_SHOVEL = new ShovelItem(UNSTABLE, 3, -1.5f, properties);
+    public static final Item UNSTABLE_SWORD = new SwordItem(UNSTABLE, 3, -2.4f, properties);
 
-    public static final Item unstable_helmet = new ArmorItem(UNSTABLE_ARMOR, ArmorItem.Type.HELMET, properties){
+    public static final Item UNSTABLE_HELMET = new ArmorItem(UNSTABLE_ARMOR, ArmorItem.Type.HELMET, properties){
         @Override
         public boolean isEnchantable(ItemStack pStack) {
             return true;
         }
     };
-    public static final Item unstable_chestplate = new ArmorItem(UNSTABLE_ARMOR, ArmorItem.Type.CHESTPLATE, properties){
+    public static final Item UNSTABLE_CHESTPLATE = new ArmorItem(UNSTABLE_ARMOR, ArmorItem.Type.CHESTPLATE, properties){
         @Override
         public boolean isEnchantable(ItemStack pStack) {
             return true;
         }
     };
-    public static final Item unstable_leggings = new ArmorItem(UNSTABLE_ARMOR, ArmorItem.Type.LEGGINGS, properties){
+    public static final Item UNSTABLE_LEGGINGS = new ArmorItem(UNSTABLE_ARMOR, ArmorItem.Type.LEGGINGS, properties){
         @Override
         public boolean isEnchantable(ItemStack pStack) {
             return true;
         }
     };
-    public static final Item unstable_boots = new ArmorItem(UNSTABLE_ARMOR, ArmorItem.Type.BOOTS, properties){
+    public static final Item UNSTABLE_BOOTS = new ArmorItem(UNSTABLE_ARMOR, ArmorItem.Type.BOOTS, properties){
         @Override
         public boolean isEnchantable(ItemStack pStack) {
             return true;

@@ -129,25 +129,25 @@ public class UnstableToolsForge {
       event.register(Registries.BLOCK, UnstableTools.id("unstable_block"), () -> ModBlocks.unstable_block);
       event.register(Registries.BLOCK, UnstableTools.id("ethereal_glass"), () -> ModBlocks.ethereal_glass);
 
-      event.register(Registries.ITEM, UnstableTools.id("unstable_ingot"), () -> ModItems.unstable_ingot);
-      event.register(Registries.ITEM, UnstableTools.id("unstable_shears"), () -> ModItems.unstable_shears);
+      event.register(Registries.ITEM, UnstableTools.id("unstable_ingot"), () -> ModItems.UNSTABLE_INGOT);
+      event.register(Registries.ITEM, UnstableTools.id("unstable_shears"), () -> ModItems.UNSTABLE_SHEARS);
 
       event.register(Registries.ITEM, UnstableTools.id("unstable_block"), () -> ModItems.unstable_block);
       event.register(Registries.ITEM, UnstableTools.id("ethereal_glass"), () -> ModItems.ethereal_glass);
 
-      event.register(Registries.ITEM, UnstableTools.id("unstable_axe"), () -> ModItems.unstable_axe);
-      event.register(Registries.ITEM, UnstableTools.id("unstable_shovel"), () -> ModItems.unstable_shovel);
-      event.register(Registries.ITEM, UnstableTools.id("unstable_pickaxe"), () -> ModItems.unstable_pickaxe);
-      event.register(Registries.ITEM, UnstableTools.id("unstable_sword"), () -> ModItems.unstable_sword);
-      event.register(Registries.ITEM, UnstableTools.id("unstable_hoe"), () -> ModItems.unstable_hoe);
+      event.register(Registries.ITEM, UnstableTools.id("unstable_axe"), () -> ModItems.UNSTABLE_AXE);
+      event.register(Registries.ITEM, UnstableTools.id("unstable_shovel"), () -> ModItems.UNSTABLE_SHOVEL);
+      event.register(Registries.ITEM, UnstableTools.id("unstable_pickaxe"), () -> ModItems.UNSTABLE_PICKAXE);
+      event.register(Registries.ITEM, UnstableTools.id("unstable_sword"), () -> ModItems.UNSTABLE_SWORD);
+      event.register(Registries.ITEM, UnstableTools.id("unstable_hoe"), () -> ModItems.UNSTABLE_HOE);
 
-      event.register(Registries.ITEM, UnstableTools.id("unstable_fishing_rod"), () -> ModItems.unstable_fishing_rod);
-      event.register(Registries.ITEM, UnstableTools.id("unstable_bow"), () -> ModItems.unstable_bow);
+      event.register(Registries.ITEM, UnstableTools.id("unstable_fishing_rod"), () -> ModItems.UNSTABLE_FISHING_ROD);
+      event.register(Registries.ITEM, UnstableTools.id("unstable_bow"), () -> ModItems.UNSTABLE_BOW);
 
-      event.register(Registries.ITEM, UnstableTools.id("unstable_helmet"), () -> ModItems.unstable_helmet);
-      event.register(Registries.ITEM, UnstableTools.id("unstable_chestplate"), () -> ModItems.unstable_chestplate);
-      event.register(Registries.ITEM, UnstableTools.id("unstable_leggings"), () -> ModItems.unstable_leggings);
-      event.register(Registries.ITEM, UnstableTools.id("unstable_boots"), () -> ModItems.unstable_boots);
+      event.register(Registries.ITEM, UnstableTools.id("unstable_helmet"), () -> ModItems.UNSTABLE_HELMET);
+      event.register(Registries.ITEM, UnstableTools.id("unstable_chestplate"), () -> ModItems.UNSTABLE_CHESTPLATE);
+      event.register(Registries.ITEM, UnstableTools.id("unstable_leggings"), () -> ModItems.UNSTABLE_LEGGINGS);
+      event.register(Registries.ITEM, UnstableTools.id("unstable_boots"), () -> ModItems.UNSTABLE_BOOTS);
       event.register(Registries.ITEM, UnstableTools.id("division_sign"), () -> ModItems.division_sign);
       event.register(Registries.ITEM, UnstableTools.id("stable_division_sign"), () -> ModItems.stable_division_sign);
 

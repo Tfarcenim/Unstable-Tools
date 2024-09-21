@@ -1,19 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " #X",
-    "# X",
-    " #X"
-  ],
+  "category": "equipment",
   "key": {
     "#": {
-      "tag": "forge:ingots/unstable"
+      "item": "unstabletools:unstable_ingot"
     },
     "X": {
       "item": "minecraft:string"
     }
   },
+  "pattern": [
+    " #X",
+    "# X",
+    " #X"
+  ],
   "result": {
     "item": "unstabletools:unstable_bow"
-  }
+  },
+  "show_notification": true
 }

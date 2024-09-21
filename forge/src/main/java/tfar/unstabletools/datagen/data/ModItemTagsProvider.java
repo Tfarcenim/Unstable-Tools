@@ -8,7 +8,6 @@ import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 import tfar.unstabletools.UnstableTools;
-import tfar.unstabletools.UnstableToolsForge;
 import tfar.unstabletools.init.ModItems;
 
 import java.util.concurrent.CompletableFuture;
@@ -20,6 +19,6 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        tag(ItemTags.BEACON_PAYMENT_ITEMS).add(ModItems.unstable_ingot);
+        tag(ItemTags.BEACON_PAYMENT_ITEMS).add(ModItems.UNSTABLE_INGOT);
     }
 }

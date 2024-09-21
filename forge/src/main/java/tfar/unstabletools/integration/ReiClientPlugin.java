@@ -5,8 +5,6 @@ import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import me.shedaniel.rei.forge.REIPluginClient;
-import me.shedaniel.rei.plugin.client.DefaultClientPlugin;
-import me.shedaniel.rei.plugin.common.displays.DefaultStrippingDisplay;
 import net.minecraft.core.registries.BuiltInRegistries;
 import tfar.unstabletools.UnstableToolsForge;
 import tfar.unstabletools.crafting.ConversionRecipe;
@@ -31,6 +29,6 @@ public class ReiClientPlugin implements REIClientPlugin {
     @Override
     public void registerCategories(CategoryRegistry registry) {
         registry.add(new ConversionRecipeCategory());
-        registry.addWorkstations(REIPlugin.TYPE, EntryStacks.of(ModItems.unstable_hoe));
+        registry.addWorkstations(REIPlugin.TYPE, EntryStacks.of(ModItems.UNSTABLE_HOE));
     }
 }

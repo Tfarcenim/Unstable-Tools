@@ -21,7 +21,7 @@ import tfar.unstabletools.mixin.TransientCraftingContainerAccess;
 import javax.annotation.Nonnull;
 
 import static tfar.unstabletools.init.ModItems.division_sign;
-import static tfar.unstabletools.init.ModItems.unstable_ingot;
+import static tfar.unstabletools.init.ModItems.UNSTABLE_INGOT;
 
 public class RecipeDivision extends ShapedRecipe {
 
@@ -31,7 +31,7 @@ super(idIn, UnstableTools.MOD_ID, category,1,3,NonNullList.of(Ingredient.EMPTY, 
   }
 
   public static ItemStack createIngot() {
-    ingot = new ItemStack(unstable_ingot);
+    ingot = new ItemStack(UNSTABLE_INGOT);
     ingot.getOrCreateTag().putInt("timer",Config.ServerConfig.timer.get());
     return ingot;
   }

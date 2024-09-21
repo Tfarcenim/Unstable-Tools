@@ -48,8 +48,8 @@ public class Client {
 
   @SubscribeEvent
   public static void setup(FMLClientSetupEvent event) {
-    ItemProperties.register(ModItems.unstable_fishing_rod,new ResourceLocation("cast"),FISHING);
-    ItemProperties.register(ModItems.unstable_bow,new ResourceLocation("pull"),PULL);
+    ItemProperties.register(ModItems.UNSTABLE_FISHING_ROD,new ResourceLocation("cast"),FISHING);
+    ItemProperties.register(ModItems.UNSTABLE_BOW,new ResourceLocation("pull"),PULL);
   }
 
 }

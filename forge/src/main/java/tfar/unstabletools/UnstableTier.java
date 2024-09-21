@@ -36,6 +36,6 @@ public class UnstableTier implements Tier {
     @Nonnull
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.of(ModItems.unstable_ingot);
+        return Ingredient.of(ModItems.UNSTABLE_INGOT);
     }
 }

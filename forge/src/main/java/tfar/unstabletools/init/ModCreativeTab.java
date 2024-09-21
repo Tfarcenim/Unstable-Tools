@@ -10,7 +10,7 @@ import tfar.unstabletools.item.DivisionSignItem;
 public class ModCreativeTab {
 
     public static final CreativeModeTab TAB = new CreativeModeTab.Builder(null,-1).title(Component.translatable("itemGroup.unstabletools"))
-            .icon(ModItems.unstable_pickaxe::getDefaultInstance)
+            .icon(ModItems.UNSTABLE_PICKAXE::getDefaultInstance)
                       .displayItems((pEnabledFeatures, pOutput) -> {
         for (Item item : ModItems.getItems()) {
             pOutput.accept(item);

@@ -1,10 +1,8 @@
 package tfar.unstabletools.integration;
 
 import com.google.common.collect.Lists;
-import com.mojang.blaze3d.systems.RenderSystem;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
-import me.shedaniel.rei.api.client.REIRuntime;
 import me.shedaniel.rei.api.client.gui.Renderer;
 import me.shedaniel.rei.api.client.gui.widgets.Widget;
 import me.shedaniel.rei.api.client.gui.widgets.Widgets;
@@ -12,8 +10,6 @@ import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.Mth;
-import net.minecraft.world.item.Items;
 import tfar.unstabletools.init.ModItems;
 
 import java.util.List;
@@ -31,7 +27,7 @@ public class ConversionRecipeCategory implements DisplayCategory<ConversionRecip
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(ModItems.unstable_hoe);
+        return EntryStacks.of(ModItems.UNSTABLE_HOE);
     }
 
     @Override
