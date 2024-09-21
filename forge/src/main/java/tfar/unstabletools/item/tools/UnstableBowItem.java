@@ -16,16 +16,10 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 
 public class UnstableBowItem extends BowItem {
-  public UnstableBowItem(Properties p_i48522_1_) {
-    super(p_i48522_1_);
- //   this.addPropertyOverride(new ResourceLocation("pull"), (stack, world, entity) -> {
-  //    if (entity == null) {
- //       return 0.0F;
- //     } else {
-   //     return !(entity.getActiveItemStack().getItem() instanceof BowItem) ? 0.0F : (float)(stack.getUseDuration() - entity.getItemInUseCount()) / 20.0F;
-//      }
-  //  });
-   // this.addPropertyOverride(new ResourceLocation("pulling"), (stack, world, entity) -> entity != null && entity.isHandActive() && entity.getActiveItemStack() == stack ? 1.0F : 0.0F);
+
+
+  public UnstableBowItem(Properties pProperties) {
+    super(pProperties);
   }
 
   /**
