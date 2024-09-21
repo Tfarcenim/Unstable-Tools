@@ -8,8 +8,10 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
+import tfar.unstabletools.UnstableTools;
 import tfar.unstabletools.init.ModBlocks;
 import tfar.unstabletools.init.ModItems;
+import tfar.unstabletools.init.ModRecipeSerializer;
 
 import java.util.function.Consumer;
 
@@ -58,6 +60,36 @@ public class ModRecipeProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.UNSTABLE_BOW).define('#', ModItems.UNSTABLE_INGOT)
                 .define('X', Items.STRING).pattern(" #X").pattern("# X").pattern(" #X")
                 .unlockedBy("has_string", has(Items.STRING)).save(consumer);
+
+
+
+        ShapedRecipeBuilderCustom.customShaped(RecipeCategory.MISC,ModItems.UNSTABLE_INGOT)
+                .define('i',Tags.Items.INGOTS_IRON)
+                .define('D',ModItems.division_sign)
+                .define('d',Tags.Items.GEMS_DIAMOND)
+                .pattern("i")
+                .pattern("D")
+                .pattern("d")
+                .serializer(ModRecipeSerializer.division)
+                .unlockedBy("has_division_sign",has(ModItems.division_sign)).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,ModItems.UNSTABLE_INGOT)
+                .define('i',Tags.Items.INGOTS_IRON)
+                .define('D',ModItems.stable_division_sign)
+                .define('d',Tags.Items.GEMS_DIAMOND)
+                .pattern("i")
+                .pattern("D")
+                .pattern("d")
+                .unlockedBy("has_stable_division_sign",has(ModItems.division_sign)).save(consumer, UnstableTools.id("stable_unstable_ingot"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC,ModBlocks.unstable_block)
+                .define('i',Tags.Items.STORAGE_BLOCKS_IRON)
+                .define('D',ModItems.stable_division_sign)
+                .define('d',Tags.Items.STORAGE_BLOCKS_DIAMOND)
+                .pattern("i")
+                .pattern("D")
+                .pattern("d")
+                .unlockedBy("has_stable_division_sign",has(ModItems.division_sign)).save(consumer, UnstableTools.id("unstable_block_by_division"));
 
     }
 

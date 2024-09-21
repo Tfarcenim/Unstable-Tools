@@ -148,6 +148,7 @@ public class UnstableToolsForge {
       event.register(Registries.ITEM, UnstableTools.id("unstable_chestplate"), () -> ModItems.UNSTABLE_CHESTPLATE);
       event.register(Registries.ITEM, UnstableTools.id("unstable_leggings"), () -> ModItems.UNSTABLE_LEGGINGS);
       event.register(Registries.ITEM, UnstableTools.id("unstable_boots"), () -> ModItems.UNSTABLE_BOOTS);
+      event.register(Registries.ITEM, UnstableTools.id("inactive_division_sign"), () -> ModItems.INACTIVE_DIVISION_SIGN);
       event.register(Registries.ITEM, UnstableTools.id("division_sign"), () -> ModItems.division_sign);
       event.register(Registries.ITEM, UnstableTools.id("stable_division_sign"), () -> ModItems.stable_division_sign);
 
@@ -175,7 +176,7 @@ public class UnstableToolsForge {
       LivingEntity entity = event.getEntity();
       if (entity instanceof WitherBoss && event.getSource().getEntity() instanceof Player) {
 
-        ItemStack itemStackToDrop = new ItemStack(ModItems.division_sign);
+        ItemStack itemStackToDrop = new ItemStack(ModItems.INACTIVE_DIVISION_SIGN);
         event.getDrops().add(new ItemEntity(entity.level(), entity.getX(), entity.getY(), entity.getZ(), itemStackToDrop));
       }
     }

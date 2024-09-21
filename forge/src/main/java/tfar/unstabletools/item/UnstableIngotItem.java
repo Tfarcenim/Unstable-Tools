@@ -21,6 +21,8 @@ import java.util.List;
 
 public class UnstableIngotItem extends Item implements IItemColored {
 
+  public static final String TIMER = "timer";
+
   public static final ResourceKey<DamageType> DIVIDE_BY_DIAMOND = ResourceKey.create(Registries.DAMAGE_TYPE, UnstableTools.id("divide_by_diamond"));
 
   public UnstableIngotItem(Properties properties) {
@@ -36,14 +38,9 @@ public class UnstableIngotItem extends Item implements IItemColored {
       tooltip.add(TranslationKeys.STABLE);
       return;
     }
-    int timer = stack.getTag().getInt("timer");
+    int timer = getTimer(stack);
     tooltip.add(TranslationKeys.timeLeft(timer));
   }
-
-
-
-
-
 
   public static void boom(Player player) {
     Level world = player.level();
@@ -56,9 +53,8 @@ public class UnstableIngotItem extends Item implements IItemColored {
     if (!stack.hasTag()) {
       return 0xffffff;
     } else {
-      CompoundTag nbt = stack.getTag();
-      int color = nbt.getInt("timer");
-      double scale = color / 200d;
+      int time = getTimer(stack);
+      double scale = time / 200d;
 
       int red, green, blue;
 
@@ -94,7 +90,11 @@ public class UnstableIngotItem extends Item implements IItemColored {
     }
   }
 
+  public static int getTimer(ItemStack stack) {
+    return stack.hasTag() && stack.getTag().contains(TIMER) ? stack.getTag().getInt(TIMER) : -1;
+  }
+
   public static boolean checkExplosion(ItemStack stack) {
-    return stack.hasTag() && stack.getItem() instanceof UnstableIngotItem && stack.getTag().getInt("timer") > 0;
+    return stack.getItem() instanceof UnstableIngotItem && getTimer(stack) >-1;
   }
 }

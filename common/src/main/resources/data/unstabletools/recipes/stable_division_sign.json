@@ -1,7 +1,7 @@
 {
   "pattern": [
     "TGF",
-    "EDE",
+    "EDs",
     "cBC"
   ],
   "type": "minecraft:crafting_shaped",
@@ -29,6 +29,9 @@
     },
     "c": {
       "item": "minecraft:clay"
+    },
+    "s": {
+      "item": "minecraft:sponge"
     }
   },
   "result": {

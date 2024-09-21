@@ -2,6 +2,7 @@ package tfar.unstabletools.init;
 
 import net.minecraft.world.item.*;
 import tfar.unstabletools.item.DivisionSignItem;
+import tfar.unstabletools.item.InactiveDivisionSignItem;
 import tfar.unstabletools.item.UnstableIngotItem;
 import tfar.unstabletools.item.StableDivisionSignItem;
 import tfar.unstabletools.item.tools.ItemUnstableAxe;
@@ -22,8 +23,9 @@ public class ModItems {
     public static final Item ethereal_glass = new BlockItem(ModBlocks.ethereal_glass, properties);
     public static final Item unstable_block = new BlockItem(ModBlocks.unstable_block, properties);
     public static final Item UNSTABLE_INGOT = new UnstableIngotItem(properties);
-    public static final Item division_sign = new DivisionSignItem(properties);
-    public static final Item stable_division_sign = new StableDivisionSignItem(new Item.Properties().craftRemainder(ModItems.stable_division_sign));
+    public static final Item INACTIVE_DIVISION_SIGN = new InactiveDivisionSignItem(new Item.Properties());
+    public static final Item division_sign = new DivisionSignItem(new Item.Properties());
+    public static final Item stable_division_sign = new StableDivisionSignItem(new Item.Properties());
     public static final Item UNSTABLE_AXE = new ItemUnstableAxe(UNSTABLE, 9, -3, properties);
     public static final Item UNSTABLE_BOW = new UnstableBowItem(properties);
     public static final Item UNSTABLE_FISHING_ROD = new FishingRodItem(properties){  @Override

@@ -1,29 +1,20 @@
 package tfar.unstabletools.item;
 
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.fml.common.Mod;
 import tfar.unstabletools.TranslationKeys;
 import tfar.unstabletools.crafting.Config;
+import tfar.unstabletools.init.ModItems;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-@Mod.EventBusSubscriber
-public class DivisionSignItem extends StableDivisionSignItem {
+public class DivisionSignItem extends AbstractDivisionSignItem {
 
     public static final String USES = "d";
 
@@ -38,14 +29,13 @@ public class DivisionSignItem extends StableDivisionSignItem {
     }
 
     public ItemStack damage(ItemStack stack) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        int d = nbt.getInt(USES);
+        int d = getUses(stack);
         d--;
         if (d > 0) {
-            nbt.putInt(USES, d);
+            setUses(stack, d);
             return stack;
         } else {
-            return new ItemStack(this);
+            return new ItemStack(ModItems.INACTIVE_DIVISION_SIGN);
         }
     }
 
@@ -56,71 +46,24 @@ public class DivisionSignItem extends StableDivisionSignItem {
 
     @Override
     public boolean isBarVisible(ItemStack stack) {
-        return getUses(stack) > 0;
-    }
-
-    @Override
-    @Nonnull
-    public InteractionResult useOn(UseOnContext ctx) {
-        Player player = ctx.getPlayer();
-        InteractionHand hand = ctx.getHand();
-        Level world = player.level();
-        BlockPos pos = ctx.getClickedPos();
-        if (hand == InteractionHand.OFF_HAND || world.isClientSide) return InteractionResult.FAIL;
-        Block block = world.getBlockState(pos).getBlock();
-        if (block != Blocks.ENCHANTING_TABLE) return InteractionResult.FAIL;
-        long time = world.getLevelData().getDayTime() % 24000;
-
-        boolean correctTime = false;
-        if (time <= 17500) message(player, TranslationKeys.EARLY);
-        else if (time <= 18500) {
-            message(player, TranslationKeys.ON_TIME);
-            correctTime = true;
-        } else message(player, TranslationKeys.LATE);
-        boolean circle = true;
-        for (int i = -1; i < 2; i++) {
-            for (int j = -1; j < 2; j++) {
-                if (i == 0 && j == 0) continue;
-                BlockPos pos1 = new BlockPos(pos.getX() + i, pos.getY(), pos.getZ() + j);
-                if (world.getBlockState(pos1).getBlock() != Blocks.REDSTONE_WIRE) circle = false;
-            }
-        }
-
-        if (!circle) message(player, TranslationKeys.INCOMPLETE_REDSTONE);
-        boolean skyVisible = world.canSeeSkyFromBelowWater(pos.above());
-        if (!skyVisible) message(player, TranslationKeys.NO_SKY);
-
-        if (correctTime && circle && skyVisible) message(player, TranslationKeys.READY);
-
-        return InteractionResult.PASS;
-    }
-
-    private static void message(Player player, Component component) {
-        player.sendSystemMessage(component);
+        return true;
     }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        if (Screen.hasShiftDown())
-            tooltip.add(TranslationKeys.DROPS_FROM_WITHER);
-        if (stack.hasTag()){
-            tooltip.add(TranslationKeys.usesLeft(getUses(stack)));
-        } else {
-            tooltip.add(TranslationKeys.INACTIVE);
-        }
+        tooltip.add(TranslationKeys.usesLeft(getUses(stack)));
     }
 
     @Override
     public int getColor(ItemStack stack, int tintIndex) {
-        return getUses(stack) <= 0 ? 0xff0000 : 0xeedd00;
+        return 0xeedd00;
     }
 
     public static int getUses(ItemStack stack) {
         return stack.hasTag() ? stack.getTag().getInt(USES) : 0;
     }
 
-    public static void setUses(ItemStack stack,int uses) {
-        stack.getOrCreateTag().putInt(USES,uses);
+    public static void setUses(ItemStack stack, int uses) {
+        stack.getOrCreateTag().putInt(USES, uses);
     }
-
 }

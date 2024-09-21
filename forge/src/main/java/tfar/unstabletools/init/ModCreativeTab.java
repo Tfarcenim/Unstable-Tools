@@ -13,7 +13,9 @@ public class ModCreativeTab {
             .icon(ModItems.UNSTABLE_PICKAXE::getDefaultInstance)
                       .displayItems((pEnabledFeatures, pOutput) -> {
         for (Item item : ModItems.getItems()) {
-            pOutput.accept(item);
+            if (item != ModItems.division_sign) {
+                pOutput.accept(item);
+            }
         }
         ItemStack filledSign = ModItems.division_sign.getDefaultInstance();
         filledSign.getOrCreateTag().putInt(DivisionSignItem.USES, Config.ServerConfig.uses.get());
