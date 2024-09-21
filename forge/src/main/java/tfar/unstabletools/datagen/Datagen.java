@@ -8,10 +8,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import tfar.unstabletools.datagen.assets.ModLangProvider;
 import tfar.unstabletools.datagen.assets.ModModelProvider;
-import tfar.unstabletools.datagen.data.ModBlockTagsProvider;
-import tfar.unstabletools.datagen.data.ModDamageTypeTagsProvider;
-import tfar.unstabletools.datagen.data.ModItemTagsProvider;
-import tfar.unstabletools.datagen.data.ModRecipeProvider;
+import tfar.unstabletools.datagen.data.*;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -30,6 +27,7 @@ public class Datagen {
         generator.addProvider(server,new ModItemTagsProvider(output,lookupProvider,blockTagsProvider,helper));
         generator.addProvider(server,new ModRecipeProvider(output));
         generator.addProvider(server,new ModDamageTypeTagsProvider(output,lookupProvider,helper));
+        generator.addProvider(server, ModLootTableProvider.create(output));
 
         generator.addProvider(client,new ModModelProvider(output));
         generator.addProvider(client,new ModLangProvider(output));
