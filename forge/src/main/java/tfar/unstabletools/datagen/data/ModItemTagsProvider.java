@@ -20,5 +20,10 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
         tag(ItemTags.BEACON_PAYMENT_ITEMS).add(ModItems.UNSTABLE_INGOT);
+        tag(ItemTags.AXES).add(ModItems.UNSTABLE_AXE);
+        tag(ItemTags.HOES).add(ModItems.UNSTABLE_HOE);
+        tag(ItemTags.PICKAXES).add(ModItems.UNSTABLE_PICKAXE);
+        tag(ItemTags.SHOVELS).add(ModItems.UNSTABLE_SHOVEL);
+        tag(ItemTags.SWORDS).add(ModItems.UNSTABLE_SWORD);
     }
 }
