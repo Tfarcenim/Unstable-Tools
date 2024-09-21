@@ -6,6 +6,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
+import tfar.unstabletools.datagen.assets.ModLangProvider;
 import tfar.unstabletools.datagen.assets.ModModelProvider;
 import tfar.unstabletools.datagen.data.ModBlockTagsProvider;
 import tfar.unstabletools.datagen.data.ModDamageTypeTagsProvider;
@@ -31,5 +32,6 @@ public class Datagen {
         generator.addProvider(server,new ModDamageTypeTagsProvider(output,lookupProvider,helper));
 
         generator.addProvider(client,new ModModelProvider(output));
+        generator.addProvider(client,new ModLangProvider(output));
     }
 }

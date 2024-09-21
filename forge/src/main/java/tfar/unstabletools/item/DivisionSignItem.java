@@ -1,6 +1,5 @@
 package tfar.unstabletools.item;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -16,8 +15,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.fml.common.Mod;
+import tfar.unstabletools.TranslationKeys;
 import tfar.unstabletools.crafting.Config;
-import tfar.unstabletools.init.ModItems;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -73,11 +72,11 @@ public class DivisionSignItem extends StableDivisionSignItem {
         long time = world.getLevelData().getDayTime() % 24000;
 
         boolean correctTime = false;
-        if (time <= 17500) message(player, Component.translatable("unstabletools.early"));
+        if (time <= 17500) message(player, TranslationKeys.EARLY);
         else if (time <= 18500) {
-            message(player, Component.translatable("unstabletools.ontime"));
+            message(player, TranslationKeys.ON_TIME);
             correctTime = true;
-        } else message(player, Component.translatable("unstabletools.late"));
+        } else message(player, TranslationKeys.LATE);
         boolean circle = true;
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
@@ -87,11 +86,11 @@ public class DivisionSignItem extends StableDivisionSignItem {
             }
         }
 
-        if (!circle) message(player, Component.translatable("unstabletools.incomplete"));
+        if (!circle) message(player, TranslationKeys.INCOMPLETE_REDSTONE);
         boolean skyVisible = world.canSeeSkyFromBelowWater(pos.above());
-        if (!skyVisible) message(player, Component.translatable("unstabletools.nosky"));
+        if (!skyVisible) message(player, TranslationKeys.NO_SKY);
 
-        if (correctTime && circle && skyVisible) message(player, Component.translatable("unstabletools.ready"));
+        if (correctTime && circle && skyVisible) message(player, TranslationKeys.READY);
 
         return InteractionResult.PASS;
     }
@@ -103,11 +102,11 @@ public class DivisionSignItem extends StableDivisionSignItem {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         if (Screen.hasShiftDown())
-            tooltip.add(Component.literal("Drops from Wither").withStyle(ChatFormatting.AQUA));
+            tooltip.add(TranslationKeys.DROPS_FROM_WITHER);
         if (stack.hasTag()){
-            tooltip.add(Component.literal("Uses Left: " + getUses(stack)));
+            tooltip.add(TranslationKeys.usesLeft(getUses(stack)));
         } else {
-            tooltip.add(Component.literal("Inactive"));
+            tooltip.add(TranslationKeys.INACTIVE);
         }
     }
 

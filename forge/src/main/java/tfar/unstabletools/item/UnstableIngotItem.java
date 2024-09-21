@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import tfar.unstabletools.IItemColored;
+import tfar.unstabletools.TranslationKeys;
 import tfar.unstabletools.UnstableTools;
 
 import javax.annotation.Nullable;
@@ -29,15 +30,14 @@ public class UnstableIngotItem extends Item implements IItemColored {
   @Override
   public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
     if (Screen.hasShiftDown()){
-      tooltip.add(Component.literal("The product of dividing iron by diamond,").withStyle(ChatFormatting.AQUA));
-      tooltip.add(Component.literal("handle with care").withStyle(ChatFormatting.AQUA));
+      tooltip.add(TranslationKeys.UNSTABLE_INGOT_TOOLTIP);
     }
     if (!stack.hasTag()) {
-      tooltip.add(Component.literal("'Stable'"));
+      tooltip.add(TranslationKeys.STABLE);
       return;
     }
     int timer = stack.getTag().getInt("timer");
-    tooltip.add(Component.literal("Time left: " + timer));
+    tooltip.add(TranslationKeys.timeLeft(timer));
   }
 
 
