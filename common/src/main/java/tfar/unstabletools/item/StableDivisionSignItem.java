@@ -10,6 +10,6 @@ public class StableDivisionSignItem extends AbstractDivisionSignItem {
 
     @Override
     public int getColor(ItemStack stack, int tintIndex) {
-        return 0x00ff00;
+        return 0xff00ff00;
     }
 }

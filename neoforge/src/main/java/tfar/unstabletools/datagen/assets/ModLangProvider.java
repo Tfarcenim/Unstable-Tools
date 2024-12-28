@@ -11,6 +11,7 @@ import net.neoforged.neoforge.common.data.LanguageProvider;
 import org.codehaus.plexus.util.StringUtils;
 import tfar.unstabletools.TranslationKeys;
 import tfar.unstabletools.UnstableTools;
+import tfar.unstabletools.init.ModItems;
 
 import java.util.function.Supplier;
 
@@ -37,6 +38,7 @@ public class ModLangProvider extends LanguageProvider {
 
         add("item.unstabletools.division_sign", "Division Sign");
         add("item.unstabletools.stable_division_sign", "Stable Division Sign");
+        addDefaultItem(() -> ModItems.INACTIVE_DIVISION_SIGN);
 
         add("item.unstabletools.unstable_helmet", "Unstable Helmet");
         add("item.unstabletools.unstable_chestplate", "Unstable Chestplate");

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "unstabletools:stable_division_sign"
+    },
+    "d": {
+      "tag": "c:storage_blocks/diamond"
+    },
+    "i": {
+      "tag": "c:storage_blocks/iron"
+    }
+  },
+  "pattern": [
+    "i",
+    "D",
+    "d"
+  ],
+  "result": {
+    "count": 1,
+    "id": "unstabletools:unstable_block"
+  }
+}

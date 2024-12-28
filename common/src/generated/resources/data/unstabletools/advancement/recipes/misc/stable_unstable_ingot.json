@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_stable_division_sign": {
+      "conditions": {
+        "items": [
+          {
+            "items": "unstabletools:division_sign"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "unstabletools:stable_unstable_ingot"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_stable_division_sign"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "unstabletools:stable_unstable_ingot"
+    ]
+  }
+}

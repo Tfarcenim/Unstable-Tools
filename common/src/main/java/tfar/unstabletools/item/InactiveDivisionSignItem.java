@@ -68,6 +68,6 @@ public class InactiveDivisionSignItem extends AbstractDivisionSignItem{
 
     @Override
     public int getColor(ItemStack stack, int tintIndex) {
-        return 0xff0000;
+        return 0xffff0000;
     }
 }

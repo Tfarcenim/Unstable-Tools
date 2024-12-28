@@ -1,0 +1,25 @@
+{
+  "type": "unstabletools:division",
+  "category": "misc",
+  "group": "division",
+  "key": {
+    "D": {
+      "item": "unstabletools:division_sign"
+    },
+    "d": {
+      "tag": "c:gems/diamond"
+    },
+    "i": {
+      "tag": "c:ingots/iron"
+    }
+  },
+  "pattern": [
+    "i",
+    "D",
+    "d"
+  ],
+  "result": {
+    "count": 1,
+    "id": "unstabletools:unstable_ingot"
+  }
+}

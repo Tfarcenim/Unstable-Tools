@@ -48,7 +48,7 @@ public class UnstableIngotItem extends Item implements IItemColored {
   @Override
   public int getColor(ItemStack stack, int tintIndex) {
     if (!stack.has(ModDataComponents.TIMER)) {
-      return 0xffffff;
+      return 0xffffffff;
     } else {
       int time = getTimer(stack);
       double scale = time / 200d;

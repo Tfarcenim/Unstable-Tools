@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "unstabletools:unstable_hoe"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_unstable_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "unstabletools:unstable_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_unstable_ingot"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "unstabletools:unstable_hoe"
+    ]
+  }
+}

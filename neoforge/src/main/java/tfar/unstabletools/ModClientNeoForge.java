@@ -18,12 +18,12 @@ public class ModClientNeoForge {
   }
 
   static void colors(RegisterColorHandlersEvent.Item e) {
-    ModItems.getItems().stream().filter(IItemColored.class::isInstance).forEach(item -> e.register(((IItemColored) item)::getColor, item));
-    ItemBlockRenderTypes.setRenderLayer(ModBlocks.unstable_block, RenderType.cutout());
-    ItemBlockRenderTypes.setRenderLayer(ModBlocks.ethereal_glass, RenderType.cutout());
+   ModItems.getItems().stream().filter(IItemColored.class::isInstance).forEach(item -> e.register(((IItemColored) item)::getColor, item));
   }
 
-  public static void setup(FMLClientSetupEvent event) {
+  static void setup(FMLClientSetupEvent event) {
+    ItemBlockRenderTypes.setRenderLayer(ModBlocks.unstable_block, RenderType.cutout());
+    ItemBlockRenderTypes.setRenderLayer(ModBlocks.ethereal_glass, RenderType.cutout());
     ItemProperties.register(ModItems.UNSTABLE_FISHING_ROD,ResourceLocation.parse("cast"), ModClient.FISHING);
     ItemProperties.register(ModItems.UNSTABLE_BOW,ResourceLocation.parse("pull"), ModClient.PULL);
   }

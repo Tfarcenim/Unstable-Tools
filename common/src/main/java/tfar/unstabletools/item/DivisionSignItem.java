@@ -56,7 +56,7 @@ public class DivisionSignItem extends AbstractDivisionSignItem {
 
     @Override
     public int getColor(ItemStack stack, int tintIndex) {
-        return 0xeedd00;
+        return 0xffeedd00;
     }
 
     public static int getUses(ItemStack stack) {

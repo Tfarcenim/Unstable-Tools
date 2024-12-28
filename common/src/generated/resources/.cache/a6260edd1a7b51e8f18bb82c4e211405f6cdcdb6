@@ -1,7 +1,7 @@
-// 1.20.1	2024-09-21T00:01:33.7543481	Tags for minecraft:item mod id unstabletools
-64a1c4ebade6de27164497e6e0c4e322ec49ddd8 data/minecraft/tags/items/axes.json
-485370ba19e5e2113cf74002e40c4127f6018e27 data/minecraft/tags/items/beacon_payment_items.json
-cfb8d96b811347af9259c1065148b8f0bf6c1d89 data/minecraft/tags/items/hoes.json
-a22b69ee11554f38510ccff838672172b2076967 data/minecraft/tags/items/pickaxes.json
-1cfa7da928161fa18c49c7a3ade2f903e187813f data/minecraft/tags/items/shovels.json
-cb0d66209a9d4476b58ede172771dc4eb0b9d369 data/minecraft/tags/items/swords.json
+// 1.21.1	2024-12-28T14:26:57.5887119	Tags for minecraft:item mod id unstabletools
+64a1c4ebade6de27164497e6e0c4e322ec49ddd8 data/minecraft/tags/item/axes.json
+485370ba19e5e2113cf74002e40c4127f6018e27 data/minecraft/tags/item/beacon_payment_items.json
+cfb8d96b811347af9259c1065148b8f0bf6c1d89 data/minecraft/tags/item/hoes.json
+a22b69ee11554f38510ccff838672172b2076967 data/minecraft/tags/item/pickaxes.json
+1cfa7da928161fa18c49c7a3ade2f903e187813f data/minecraft/tags/item/shovels.json
+cb0d66209a9d4476b58ede172771dc4eb0b9d369 data/minecraft/tags/item/swords.json

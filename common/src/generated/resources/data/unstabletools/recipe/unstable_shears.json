@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "unstabletools:unstable_ingot"
+    },
+    "O": {
+      "item": "minecraft:crying_obsidian"
+    }
+  },
+  "pattern": [
+    "O#",
+    "#O"
+  ],
+  "result": {
+    "count": 1,
+    "id": "unstabletools:unstable_shears"
+  }
+}
