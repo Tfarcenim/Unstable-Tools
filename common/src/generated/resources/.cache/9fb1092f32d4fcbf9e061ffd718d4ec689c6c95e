@@ -1,4 +1,4 @@
-// 1.21.1	2024-12-28T14:26:57.5932152	Recipes
+// 1.21.1	2024-12-28T18:00:23.6652522	Recipes
 b1d5bd125c9d7b55286274db3f09bd125134faab data/unstabletools/advancement/recipes/combat/unstable_boots.json
 83787fd6575620437fc702c0907ec8c6bcd7ef14 data/unstabletools/advancement/recipes/combat/unstable_bow.json
 688aed817e9dbe044243374a955a4d4bd601c119 data/unstabletools/advancement/recipes/combat/unstable_chestplate.json
@@ -25,7 +25,7 @@ c8b8c4f9d89465f51f16cc8669e55dc9882f9bbf data/unstabletools/recipe/unstable_ches
 2b4fee6b4c4acf2f7da73d69250c6a4caa337287 data/unstabletools/recipe/unstable_fishing_rod.json
 32841267eb033e6a24fb6bdfb185064ac4048c4a data/unstabletools/recipe/unstable_helmet.json
 5fe12ae62b45e72660218efae2f244a8001a6b86 data/unstabletools/recipe/unstable_hoe.json
-5c5b0374ef921b8857c0a939c181aea1e6ef8907 data/unstabletools/recipe/unstable_ingot.json
+9bfe0fbfe8aed975db2a6ab02deeb39ac0d70579 data/unstabletools/recipe/unstable_ingot.json
 4d97937ab93e1f96de6ffd32903f10dd0d6c77ec data/unstabletools/recipe/unstable_leggings.json
 fe28a8d2a72e98eed447b7d1e0dad46d8b3ce487 data/unstabletools/recipe/unstable_pickaxe.json
 035c49bff9f1fe7c4080549d22e363fd1d792b1d data/unstabletools/recipe/unstable_shears.json

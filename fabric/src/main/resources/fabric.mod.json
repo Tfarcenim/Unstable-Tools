@@ -16,7 +16,7 @@
     "environment": "*",
     "entrypoints": {
         "main": [
-          "tfar.unstabletools.ExampleMod"
+          "tfar.unstabletools.UnstableToolsFabric"
         ]
     },
     "mixins": [

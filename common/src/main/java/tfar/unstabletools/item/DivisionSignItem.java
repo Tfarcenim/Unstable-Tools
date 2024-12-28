@@ -14,8 +14,6 @@ import java.util.List;
 
 public class DivisionSignItem extends AbstractDivisionSignItem {
 
-    public static final String USES = "d";
-
     public DivisionSignItem(Item.Properties properties) {
         super(properties);
     }

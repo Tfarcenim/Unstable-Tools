@@ -15,7 +15,6 @@ import tfar.unstabletools.TranslationKeys;
 import tfar.unstabletools.UnstableTools;
 import tfar.unstabletools.init.ModDataComponents;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class UnstableIngotItem extends Item implements IItemColored {
@@ -83,7 +82,7 @@ public class UnstableIngotItem extends Item implements IItemColored {
             throw new IllegalStateException("thonk"+scale);
         }
       }
-      return (red << 16) + (green << 8) + blue;
+      return 0xff000000| (red << 16) + (green << 8) + blue;
     }
   }
 

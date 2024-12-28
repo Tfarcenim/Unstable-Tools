@@ -19,6 +19,9 @@
     "d"
   ],
   "result": {
+    "components": {
+      "unstabletools:timer": 200
+    },
     "count": 1,
     "id": "unstabletools:unstable_ingot"
   }

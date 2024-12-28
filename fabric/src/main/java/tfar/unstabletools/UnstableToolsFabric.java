@@ -2,7 +2,7 @@ package tfar.unstabletools;
 
 import net.fabricmc.api.ModInitializer;
 
-public class ExampleMod implements ModInitializer {
+public class UnstableToolsFabric implements ModInitializer {
     
     @Override
     public void onInitialize() {
@@ -12,7 +12,6 @@ public class ExampleMod implements ModInitializer {
         // project.
 
         // Use Fabric to bootstrap the Common mod.
-        UnstableTools.LOG.info("Hello Fabric world!");
         UnstableTools.init();
     }
 }

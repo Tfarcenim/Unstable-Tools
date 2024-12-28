@@ -6,11 +6,13 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import tfar.unstabletools.UnstableTools;
 import tfar.unstabletools.init.ModBlocks;
+import tfar.unstabletools.init.ModDataComponents;
 import tfar.unstabletools.init.ModItems;
 import tfar.unstabletools.init.ModRecipeSerializer;
 
@@ -65,8 +67,10 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_string", has(Items.STRING)).save(consumer);
 
 
+        ItemStack stack = ModItems.UNSTABLE_INGOT.getDefaultInstance();
+        stack.set(ModDataComponents.TIMER,200);
 
-        ShapedRecipeBuilderCustom.customShaped(RecipeCategory.MISC,ModItems.UNSTABLE_INGOT)
+        ShapedRecipeBuilderCustom.customShaped(RecipeCategory.MISC,stack)
                 .define('i',Tags.Items.INGOTS_IRON)
                 .define('D',ModItems.division_sign)
                 .define('d',Tags.Items.GEMS_DIAMOND)

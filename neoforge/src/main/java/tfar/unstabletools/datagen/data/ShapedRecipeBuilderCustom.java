@@ -6,35 +6,27 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import tfar.unstabletools.crafting.DivisionRecipe;
 
 import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class ShapedRecipeBuilderCustom extends ShapedRecipeBuilder {
 
     private RecipeSerializer<?> serializer;
 
-    public ShapedRecipeBuilderCustom(RecipeCategory pCategory, ItemLike pResult, int pCount) {
-        super(pCategory, pResult, pCount);
+    public ShapedRecipeBuilderCustom(RecipeCategory pCategory, ItemStack stack) {
+        super(pCategory, stack);
     }
 
     /**
      * Creates a new builder for a shaped recipe.
      */
-    public static ShapedRecipeBuilderCustom customShaped(RecipeCategory pCategory, ItemLike pResult) {
-        return customShaped(pCategory, pResult, 1);
-    }
-
-    /**
-     * Creates a new builder for a shaped recipe.
-     */
-    public static ShapedRecipeBuilderCustom customShaped(RecipeCategory pCategory, ItemLike pResult, int pCount) {
-        return new ShapedRecipeBuilderCustom(pCategory, pResult, pCount);
+    public static ShapedRecipeBuilderCustom customShaped(RecipeCategory pCategory, ItemStack stack) {
+        return new ShapedRecipeBuilderCustom(pCategory, stack);
     }
 
     /**

@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import tfar.unstabletools.UnstableToolsNeoForge;
+import tfar.unstabletools.UnstableTools;
 
 import java.util.List;
 
@@ -34,6 +34,6 @@ public class BlockMixin {
     @Inject(method = "*(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V",
             at = @At("HEAD"))
     private static void interceptDrops(Level worldIn, BlockPos pos, ItemStack stackToSpawn, CallbackInfo ci) {
-        UnstableToolsNeoForge.onBlockDrops(worldIn,pos,stackToSpawn,entityThreadLocal.get(),itemStackThreadLocal.get());
+        UnstableTools.onBlockDrops(worldIn,pos,stackToSpawn,entityThreadLocal.get(),itemStackThreadLocal.get());
     }
 }
