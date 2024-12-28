@@ -22,7 +22,7 @@ public class REIPlugin implements REIServerPlugin {
     public static final CategoryIdentifier<ConversionRecipeDisplay> TYPE = CategoryIdentifier.of(BLOCK_CONVERSIONS.getNamespace(), BLOCK_CONVERSIONS.getPath());
 
     public static List<ConversionRecipe> getRecipes() {
-        ConversionManager conversionManager = UnstableToolsNeoForge.instance.manager;
+        ConversionManager conversionManager = UnstableTools.manager;
         List<ConversionRecipe> conversionRecipes = new ArrayList<>();
         for (Map.Entry<Block,Block> entry:conversionManager.getConversionMap().entrySet()) {
             conversionRecipes.add(new ConversionRecipe(entry.getKey(),entry.getValue()));

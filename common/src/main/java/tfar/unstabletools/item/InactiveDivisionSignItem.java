@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.Blocks;
 import tfar.unstabletools.TranslationKeys;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class InactiveDivisionSignItem extends AbstractDivisionSignItem{
@@ -23,8 +22,8 @@ public class InactiveDivisionSignItem extends AbstractDivisionSignItem{
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add(TranslationKeys.DROPS_FROM_WITHER);
+    public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+        pTooltipComponents.add(TranslationKeys.DROPS_FROM_WITHER);
     }
 
     @Override

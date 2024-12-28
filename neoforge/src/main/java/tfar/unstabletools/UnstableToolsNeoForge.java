@@ -1,9 +1,12 @@
 package tfar.unstabletools;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.MappedRegistry;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -24,50 +27,55 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.entity.item.ItemTossEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerContainerEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
-import tfar.unstabletools.crafting.ConversionManager;
+import org.apache.commons.lang3.tuple.Pair;
 import tfar.unstabletools.datagen.Datagen;
-import tfar.unstabletools.init.ModBlocks;
-import tfar.unstabletools.init.ModCreativeTab;
-import tfar.unstabletools.init.ModItems;
-import tfar.unstabletools.init.ModRecipeSerializer;
-import tfar.unstabletools.item.DivisionSignItem;
+import tfar.unstabletools.init.*;
 import tfar.unstabletools.item.UnstableIngotItem;
 import tfar.unstabletools.item.tools.ItemUnstableShears;
-import tfar.unstabletools.platform.Services;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
 
 @Mod(value = UnstableTools.MOD_ID)
 public class UnstableToolsNeoForge {
 
+    public static Map<Registry<?>, List<Pair<ResourceLocation, Supplier<?>>>> registerLater = new HashMap<>();
 
-    public static UnstableToolsNeoForge instance;
-  public UnstableToolsNeoForge(IEventBus bus, Dist dist) {
-    instance = this;
-    NeoForge.EVENT_BUS.addListener(this::onDrops);
-    NeoForge.EVENT_BUS.addListener(this::reload);
-    NeoForge.EVENT_BUS.addListener(this::onItemDrop);
-    NeoForge.EVENT_BUS.addListener(this::playertick);
-    NeoForge.EVENT_BUS.addListener(this::onContainerClose);
-    NeoForge.EVENT_BUS.addListener(this::onSacrifice);
-    if (dist.isClient()) {
-        ModClientForge.init(bus);
+
+
+
+    public UnstableToolsNeoForge(IEventBus bus, Dist dist, ModContainer container) {
+        NeoForge.EVENT_BUS.addListener(this::onDrops);
+        NeoForge.EVENT_BUS.addListener(this::reload);
+        NeoForge.EVENT_BUS.addListener(this::onItemDrop);
+        NeoForge.EVENT_BUS.addListener(this::playertick);
+        NeoForge.EVENT_BUS.addListener(this::onContainerClose);
+        NeoForge.EVENT_BUS.addListener(this::onSacrifice);
+        if (dist.isClient()) {
+            ModClientNeoForge.init(bus);
+        }
+        bus.addListener(this::registerBlock);
+        bus.addListener(Datagen::gather);
+        bus.addListener(this::onInitialize);
+        container.registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
+
+        ((MappedRegistry<ArmorMaterial>)BuiltInRegistries.ARMOR_MATERIAL).unfreeze();
+        UnstableTools.init();
     }
-    bus.addListener(this::registerBlock);
-    bus.addListener(Datagen::gather);
-    ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
-  }
-
-  public static final Tier UNSTABLE = new UnstableTier();
-
-  public static final ArmorMaterial UNSTABLE_ARMOR = new UnstableArmorMaterial();
 
     public void onSacrifice(LivingDeathEvent e) {
         if (!(e.getSource().getEntity() instanceof Player player)) return;
@@ -92,10 +100,10 @@ public class UnstableToolsNeoForge {
         NonNullList<ItemStack> mainInventory = player.getInventory().items;
         for (int i = 0; i < mainInventory.size(); i++) {
             final ItemStack stack = mainInventory.get(i);
-            if (stack.getItem() != ModItems.division_sign && stack.getItem() != ModItems.division_sign)
+            if (stack.getItem() != ModItems.division_sign)
                 continue;
             ItemStack newStack = new ItemStack(ModItems.division_sign);
-            newStack.getOrCreateTag().putInt(DivisionSignItem.USES, Config.ServerConfig.uses.get());
+            newStack.set(ModDataComponents.USES, Config.ServerConfig.uses.get());
             mainInventory.set(i, newStack);
         }
         if (!world.isClientSide) {
@@ -103,7 +111,7 @@ public class UnstableToolsNeoForge {
             entity.moveTo(sacrifice.getX(), sacrifice.getY(), sacrifice.getZ());
             world.addFreshEntity(entity);
         }
-        if (Services.PLATFORM.isModLoaded("cursedearth") && Config.ServerConfig.cursed_earth_integration.get()) {
+        if (UnstableTools.cursed_earth && Config.ServerConfig.cursed_earth_integration.get()) {
             for (int x = pos.getX() - 7; x < pos.getX() + 8; x++)
                 for (int z = pos.getZ() - 7; z < pos.getZ() + 8; z++) {
                     int y = world.getHeight(Heightmap.Types.WORLD_SURFACE, x, z) - 1;
@@ -111,7 +119,7 @@ public class UnstableToolsNeoForge {
                         BlockPos pos1 = new BlockPos(x, y1, z);
                         BlockState block1 = world.getBlockState(pos1);
                         if (block1.is(BlockTags.DIRT)) {
-                            world.setBlockAndUpdate(pos1, cursed_earth.defaultBlockState());
+                            world.setBlockAndUpdate(pos1, UnstableTools.cursed_earth_block.get().defaultBlockState());
                             break;
                         }
                     }
@@ -120,118 +128,96 @@ public class UnstableToolsNeoForge {
     }
 
     void registerBlock(RegisterEvent event) {
-      event.register(Registries.BLOCK, UnstableTools.id("unstable_block"), () -> ModBlocks.unstable_block);
-      event.register(Registries.BLOCK, UnstableTools.id("ethereal_glass"), () -> ModBlocks.ethereal_glass);
+        for (Map.Entry<Registry<?>,List<Pair<ResourceLocation, Supplier<?>>>> entry : registerLater.entrySet()) {
+            Registry<?> registry = entry.getKey();
+            List<Pair<ResourceLocation, Supplier<?>>> toRegister = entry.getValue();
+            for (Pair<ResourceLocation,Supplier<?>> pair : toRegister) {
+                event.register((ResourceKey<? extends Registry<Object>>)registry.key(),pair.getLeft(),(Supplier<Object>)pair.getValue());
+            }
+        }
+    }
 
-      event.register(Registries.ITEM, UnstableTools.id("unstable_ingot"), () -> ModItems.UNSTABLE_INGOT);
-      event.register(Registries.ITEM, UnstableTools.id("unstable_shears"), () -> ModItems.UNSTABLE_SHEARS);
-
-      event.register(Registries.ITEM, UnstableTools.id("unstable_block"), () -> ModItems.unstable_block);
-      event.register(Registries.ITEM, UnstableTools.id("ethereal_glass"), () -> ModItems.ethereal_glass);
-
-      event.register(Registries.ITEM, UnstableTools.id("unstable_axe"), () -> ModItems.UNSTABLE_AXE);
-      event.register(Registries.ITEM, UnstableTools.id("unstable_shovel"), () -> ModItems.UNSTABLE_SHOVEL);
-      event.register(Registries.ITEM, UnstableTools.id("unstable_pickaxe"), () -> ModItems.UNSTABLE_PICKAXE);
-      event.register(Registries.ITEM, UnstableTools.id("unstable_sword"), () -> ModItems.UNSTABLE_SWORD);
-      event.register(Registries.ITEM, UnstableTools.id("unstable_hoe"), () -> ModItems.UNSTABLE_HOE);
-
-      event.register(Registries.ITEM, UnstableTools.id("unstable_fishing_rod"), () -> ModItems.UNSTABLE_FISHING_ROD);
-      event.register(Registries.ITEM, UnstableTools.id("unstable_bow"), () -> ModItems.UNSTABLE_BOW);
-
-      event.register(Registries.ITEM, UnstableTools.id("unstable_helmet"), () -> ModItems.UNSTABLE_HELMET);
-      event.register(Registries.ITEM, UnstableTools.id("unstable_chestplate"), () -> ModItems.UNSTABLE_CHESTPLATE);
-      event.register(Registries.ITEM, UnstableTools.id("unstable_leggings"), () -> ModItems.UNSTABLE_LEGGINGS);
-      event.register(Registries.ITEM, UnstableTools.id("unstable_boots"), () -> ModItems.UNSTABLE_BOOTS);
-      event.register(Registries.ITEM, UnstableTools.id("inactive_division_sign"), () -> ModItems.INACTIVE_DIVISION_SIGN);
-      event.register(Registries.ITEM, UnstableTools.id("division_sign"), () -> ModItems.division_sign);
-      event.register(Registries.ITEM, UnstableTools.id("stable_division_sign"), () -> ModItems.stable_division_sign);
-
-      event.register(Registries.RECIPE_SERIALIZER, UnstableTools.id("division"), () -> ModRecipeSerializer.division);
-
-      event.register(Registries.CREATIVE_MODE_TAB,UnstableTools.id("tab"),() -> ModCreativeTab.TAB);
-
+    public void onInitialize(FMLCommonSetupEvent e) {
+        registerLater.clear();
     }
 
     public static void onBlockDrops(Level worldIn, BlockPos pos, ItemStack stackToSpawn, Entity entity, ItemStack stack) {
-      if (entity instanceof Player player) {
-        if (stack.getItem() instanceof ItemUnstableShears) {
-          player.addItem(stackToSpawn);
+        if (entity instanceof Player player) {
+            if (stack.getItem() instanceof ItemUnstableShears) {
+                player.addItem(stackToSpawn);
+            }
         }
-      }
     }
 
-    public final ConversionManager manager = new ConversionManager();
-
     private void reload(AddReloadListenerEvent event) {
-      event.addListener(manager);
+        event.addListener(UnstableTools.manager);
     }
 
     private void onDrops(LivingDropsEvent event) {
-      LivingEntity entity = event.getEntity();
-      if (entity instanceof WitherBoss && event.getSource().getEntity() instanceof Player) {
+        LivingEntity entity = event.getEntity();
+        if (entity instanceof WitherBoss && event.getSource().getEntity() instanceof Player) {
 
-        ItemStack itemStackToDrop = new ItemStack(ModItems.INACTIVE_DIVISION_SIGN);
-        event.getDrops().add(new ItemEntity(entity.level(), entity.getX(), entity.getY(), entity.getZ(), itemStackToDrop));
-      }
+            ItemStack itemStackToDrop = new ItemStack(ModItems.INACTIVE_DIVISION_SIGN);
+            event.getDrops().add(new ItemEntity(entity.level(), entity.getX(), entity.getY(), entity.getZ(), itemStackToDrop));
+        }
     }
 
     void onItemDrop(ItemTossEvent e) {
-      Player p = e.getPlayer();
-      ItemEntity entityItem = e.getEntity();
-      ItemStack stack = entityItem.getItem();
-      if (UnstableIngotItem.checkExplosion(stack)) {
-        UnstableIngotItem.boom(p);
-        e.setCanceled(true);
-      }
+        Player p = e.getPlayer();
+        ItemEntity entityItem = e.getEntity();
+        ItemStack stack = entityItem.getItem();
+        if (UnstableIngotItem.checkExplosion(stack)) {
+            UnstableIngotItem.boom(p);
+            e.setCanceled(true);
+        }
     }
 
-    void playertick(TickEvent.PlayerTickEvent e) {
+    void playertick(PlayerTickEvent.Post e) {
 
-      if (e.phase == TickEvent.Phase.START) return;
+        Player player = e.getEntity();
+        if (player.level().isClientSide) return;
+        AbstractContainerMenu container = e.getEntity().containerMenu;
 
-      AbstractContainerMenu container = e.player.containerMenu;
-
-      try {
-        MenuType<?> type = container.getType();
-        if (!Config.ServerConfig.allowed_containers.get().contains(BuiltInRegistries.MENU.getKey(type).toString()))
-          return;
-      } catch (Exception ex) {
-        return;
-      }
-
-      Level world = e.player.level();
-
-      if (world.isClientSide) return;
-      boolean explode = false;
-
-      List<Slot> inventorySlots = container.slots;
-      for (Slot slot : inventorySlots) {
-        ItemStack stack = slot.getItem();
-        if (!(stack.getItem() instanceof UnstableIngotItem) || !stack.hasTag() || slot instanceof ResultSlot)
-          continue;
-        int timer = stack.getTag().getInt("timer");
-        if (timer <= 0) {
-          slot.set(ItemStack.EMPTY);
-          explode = true;
-          continue;
+        try {
+            MenuType<?> type = container.getType();
+            if (!Config.ServerConfig.allowed_containers.get().contains(BuiltInRegistries.MENU.getKey(type).toString()))
+                return;
+        } catch (Exception ex) {
+            return;
         }
-        stack.getTag().putInt("timer", --timer);
-      }
 
-      if (!explode) return;
-      UnstableIngotItem.boom(e.player);
+        Level world = player.level();
+
+        boolean explode = false;
+
+        List<Slot> inventorySlots = container.slots;
+        for (Slot slot : inventorySlots) {
+            ItemStack stack = slot.getItem();
+            if (!(stack.getItem() instanceof UnstableIngotItem) || slot instanceof ResultSlot)
+                continue;
+            int timer = stack.getOrDefault(ModDataComponents.TIMER,0);
+            if (timer <= 0) {
+                slot.set(ItemStack.EMPTY);
+                explode = true;
+                continue;
+            }
+            stack.set(ModDataComponents.TIMER, --timer);
+        }
+
+        if (!explode) return;
+        UnstableIngotItem.boom(player);
     }
 
     void onContainerClose(PlayerContainerEvent.Close e) {
-      AbstractContainerMenu c = e.getContainer();
-      boolean explode = false;
-      for (Slot slot : c.slots) {
-        ItemStack stack = slot.getItem();
-        if (!UnstableIngotItem.checkExplosion(stack) || slot instanceof ResultSlot) continue;
-        slot.set(ItemStack.EMPTY);
-        explode = true;
-      }
-      if (!explode) return;
-      UnstableIngotItem.boom(e.getEntity());
+        AbstractContainerMenu c = e.getContainer();
+        boolean explode = false;
+        for (Slot slot : c.slots) {
+            ItemStack stack = slot.getItem();
+            if (!UnstableIngotItem.checkExplosion(stack) || slot instanceof ResultSlot) continue;
+            slot.set(ItemStack.EMPTY);
+            explode = true;
+        }
+        if (!explode) return;
+        UnstableIngotItem.boom(e.getEntity());
     }
 }

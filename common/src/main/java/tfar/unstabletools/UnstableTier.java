@@ -1,8 +1,11 @@
 package tfar.unstabletools;
 
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Block;
 import tfar.unstabletools.init.ModItems;
+import tfar.unstabletools.init.ModTags;
 
 import javax.annotation.Nonnull;
 
@@ -15,7 +18,7 @@ public class UnstableTier implements Tier {
 
     @Override
     public float getSpeed() {
-        return 8;
+        return 10;
     }
 
     @Override
@@ -24,9 +27,10 @@ public class UnstableTier implements Tier {
     }
 
     @Override
-    public int getLevel() {
-        return 4;
+    public TagKey<Block> getIncorrectBlocksForDrops() {
+        return ModTags.Blocks.INCORRECT_FOR_UNSTABLE_TOOL;
     }
+
 
     @Override
     public int getEnchantmentValue() {

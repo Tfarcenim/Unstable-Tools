@@ -37,7 +37,7 @@ public class ConversionManager extends SimpleJsonResourceReloadListener {
             if (resourcelocation.getPath().startsWith("_")) continue; //Forge: filter anything beginning with "_" as it's used for metadata.
 
             try {
-                Pair<Block,Block> blockPair = deserializeConversion(resourcelocation, GsonHelper.convertToJsonObject(entry.getValue(), "top element"));
+                Pair<Block,Block> blockPair = deserializeConversion(GsonHelper.convertToJsonObject(entry.getValue(), "top element"));
                 if (blockPair == null) {
                     LOGGER.info("Skipping loading conversion {} as it is empty", resourcelocation);
                     continue;
@@ -54,8 +54,8 @@ public class ConversionManager extends SimpleJsonResourceReloadListener {
     /**
      * Deserializes a conversion object from json data.
      */
-    public static Pair<Block,Block> deserializeConversion(ResourceLocation recipeId, JsonObject json) {
-        if (json.size() == 0) {
+    public static Pair<Block,Block> deserializeConversion(JsonObject json) {
+        if (json.isEmpty()) {
             return null;
         }
         Block s1 = JSONUtils2.getBlock(json, "from");

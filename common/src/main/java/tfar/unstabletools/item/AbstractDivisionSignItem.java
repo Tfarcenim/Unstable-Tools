@@ -9,12 +9,12 @@ public abstract class AbstractDivisionSignItem extends Item implements IItemColo
         super(pProperties);
     }
 
-    @Override
+   // @Override
     public boolean hasCraftingRemainingItem(ItemStack stack) {
         return true;
     }
 
-    @Override
+   // @Override
     public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
         return itemStack;
     }

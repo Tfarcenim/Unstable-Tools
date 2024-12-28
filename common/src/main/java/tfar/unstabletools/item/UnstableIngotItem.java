@@ -1,9 +1,7 @@
 package tfar.unstabletools.item;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.damagesource.DamageType;
@@ -15,13 +13,12 @@ import net.minecraft.world.level.Level;
 import tfar.unstabletools.IItemColored;
 import tfar.unstabletools.TranslationKeys;
 import tfar.unstabletools.UnstableTools;
+import tfar.unstabletools.init.ModDataComponents;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
 public class UnstableIngotItem extends Item implements IItemColored {
-
-  public static final String TIMER = "timer";
 
   public static final ResourceKey<DamageType> DIVIDE_BY_DIAMOND = ResourceKey.create(Registries.DAMAGE_TYPE, UnstableTools.id("divide_by_diamond"));
 
@@ -30,11 +27,11 @@ public class UnstableIngotItem extends Item implements IItemColored {
   }
 
   @Override
-  public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+  public void appendHoverText(ItemStack stack, TooltipContext pContext, List<Component> tooltip, TooltipFlag pTooltipFlag) {
     if (Screen.hasShiftDown()){
       tooltip.add(TranslationKeys.UNSTABLE_INGOT_TOOLTIP);
     }
-    if (!stack.hasTag()) {
+    if (!stack.has(ModDataComponents.TIMER)) {
       tooltip.add(TranslationKeys.STABLE);
       return;
     }
@@ -50,7 +47,7 @@ public class UnstableIngotItem extends Item implements IItemColored {
 
   @Override
   public int getColor(ItemStack stack, int tintIndex) {
-    if (!stack.hasTag()) {
+    if (!stack.has(ModDataComponents.TIMER)) {
       return 0xffffff;
     } else {
       int time = getTimer(stack);
@@ -91,7 +88,7 @@ public class UnstableIngotItem extends Item implements IItemColored {
   }
 
   public static int getTimer(ItemStack stack) {
-    return stack.hasTag() && stack.getTag().contains(TIMER) ? stack.getTag().getInt(TIMER) : -1;
+    return stack.getOrDefault(ModDataComponents.TIMER, -1);
   }
 
   public static boolean checkExplosion(ItemStack stack) {

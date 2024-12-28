@@ -18,16 +18,6 @@ public class ItemUnstableShears extends ShearsItem {
   }
 
   @Override
-  public boolean isCorrectToolForDrops(BlockState block) {
-    return true;
-  }
-
-  @Override
-  public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-    return super.canApplyAtEnchantingTable(stack,enchantment) || enchantment == Enchantments.SILK_TOUCH;
-  }
-
-  @Override
   public boolean isEnchantable(ItemStack pStack) {
     return true;
   }

@@ -6,9 +6,8 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.common.data.LanguageProvider;
 import org.codehaus.plexus.util.StringUtils;
 import tfar.unstabletools.TranslationKeys;
 import tfar.unstabletools.UnstableTools;
@@ -25,7 +24,7 @@ public class ModLangProvider extends LanguageProvider {
         add("item.unstabletools.unstable_ingot", "Unstable Ingot");
         add("block.unstabletools.unstable_block", "Unstable Block");
 
-        add("item.unstabletools.unstable_paxel", "Unstable Paxel");
+        //add("item.unstabletools.unstable_paxel", "Unstable Paxel");
         add("item.unstabletools.unstable_fishing_rod", "Unstable Fishing Rod");
         add("item.unstabletools.unstable_bow", "Unstable Bow");
 
@@ -74,10 +73,6 @@ public class ModLangProvider extends LanguageProvider {
         addBlock(supplier,getNameFromBlock(supplier.get()));
     }
 
-    protected void addDefaultEnchantment(Supplier<? extends Enchantment> supplier) {
-        addEnchantment(supplier,getNameFromEnchantment(supplier.get()));
-    }
-
     protected void addDefaultEntityType(Supplier<EntityType<?>> supplier) {
         addEntityType(supplier,getNameFromEntity(supplier.get()));
     }
@@ -88,10 +83,6 @@ public class ModLangProvider extends LanguageProvider {
 
     public static String getNameFromBlock(Block block) {
         return StringUtils.capitaliseAllWords(block.getDescriptionId().split("\\.")[2].replace("_", " "));
-    }
-
-    public static String getNameFromEnchantment(Enchantment enchantment) {
-        return StringUtils.capitaliseAllWords(enchantment.getDescriptionId().split("\\.")[2].replace("_", " "));
     }
 
     public static String getNameFromEntity(EntityType<?> entity) {

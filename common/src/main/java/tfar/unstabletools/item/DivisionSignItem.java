@@ -4,13 +4,12 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
 import tfar.unstabletools.TranslationKeys;
 import tfar.unstabletools.Config;
+import tfar.unstabletools.init.ModDataComponents;
 import tfar.unstabletools.init.ModItems;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class DivisionSignItem extends AbstractDivisionSignItem {
@@ -40,7 +39,7 @@ public class DivisionSignItem extends AbstractDivisionSignItem {
 
     @Override
     public int getBarWidth(ItemStack stack) {
-        return (int) (MAX_BAR_WIDTH * stack.getOrCreateTag().getInt(USES) / (double) Config.ServerConfig.uses.get());
+        return (int) (MAX_BAR_WIDTH * getUses(stack) / (double) Config.ServerConfig.uses.get());
     }
 
     @Override
@@ -48,9 +47,11 @@ public class DivisionSignItem extends AbstractDivisionSignItem {
         return true;
     }
 
+
+
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add(TranslationKeys.usesLeft(getUses(stack)));
+    public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+        pTooltipComponents.add(TranslationKeys.usesLeft(getUses(pStack)));
     }
 
     @Override
@@ -59,10 +60,10 @@ public class DivisionSignItem extends AbstractDivisionSignItem {
     }
 
     public static int getUses(ItemStack stack) {
-        return stack.hasTag() ? stack.getTag().getInt(USES) : 0;
+        return stack.getOrDefault(ModDataComponents.USES,0);
     }
 
     public static void setUses(ItemStack stack, int uses) {
-        stack.getOrCreateTag().putInt(USES, uses);
+        stack.set(ModDataComponents.USES, uses);
     }
 }

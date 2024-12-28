@@ -4,10 +4,8 @@ import com.google.common.collect.Sets;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.CachedOutput;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -18,7 +16,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import tfar.unstabletools.crafting.ConversionManager;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -106,13 +103,13 @@ public class BlockConversionProvider implements DataProvider {
 
         for (DyeColor dyeColor : DyeColor.values()) {
             String name = dyeColor.name().toLowerCase(Locale.ROOT);
-            Block from = BuiltInRegistries.BLOCK.get(new ResourceLocation(name+"_stained_glass"));
-            consumer.accept(BlockConversionBuilder.createBlockConversion(from,Blocks.GLASS,new ResourceLocation("stained_glass_"+name)));
+            Block from = BuiltInRegistries.BLOCK.get(ResourceLocation.withDefaultNamespace(name+"_stained_glass"));
+            consumer.accept(BlockConversionBuilder.createBlockConversion(from,Blocks.GLASS,ResourceLocation.withDefaultNamespace("stained_glass_"+name)));
         }
 
         consumer.accept(BlockConversionBuilder.createBlockConversion(Blocks.FARMLAND, Blocks.DIRT));
         //consumer.accept(BlockConversionBuilder.createBlockConversion(Blocks.GRASS_PATH, Blocks.GRASS_BLOCK));
-        consumer.accept(BlockConversionBuilder.createBlockConversion(Blocks.DIRT, Blocks.GRASS_BLOCK,new ResourceLocation("grass_block_2")));
+        consumer.accept(BlockConversionBuilder.createBlockConversion(Blocks.DIRT, Blocks.GRASS_BLOCK,ResourceLocation.withDefaultNamespace("grass_block_2")));
         consumer.accept(BlockConversionBuilder.createBlockConversion(Blocks.DEAD_BUSH, Blocks.OAK_SAPLING));
     }
 }

@@ -5,7 +5,6 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import tfar.unstabletools.Config;
-import tfar.unstabletools.item.DivisionSignItem;
 
 public class ModCreativeTab {
 
@@ -18,7 +17,7 @@ public class ModCreativeTab {
             }
         }
         ItemStack filledSign = ModItems.division_sign.getDefaultInstance();
-        filledSign.getOrCreateTag().putInt(DivisionSignItem.USES, Config.ServerConfig.uses.get());
+        filledSign.set(ModDataComponents.USES,Config.ServerConfig.uses.get());
         pOutput.accept(filledSign);
     }).build();
 

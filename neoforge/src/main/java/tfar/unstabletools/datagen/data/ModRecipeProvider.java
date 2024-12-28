@@ -1,35 +1,38 @@
 package tfar.unstabletools.datagen.data;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.Tags;
+import net.neoforged.neoforge.common.Tags;
 import tfar.unstabletools.UnstableTools;
 import tfar.unstabletools.init.ModBlocks;
 import tfar.unstabletools.init.ModItems;
 import tfar.unstabletools.init.ModRecipeSerializer;
 
-import java.util.function.Consumer;
+import java.util.concurrent.CompletableFuture;
 
 public class ModRecipeProvider extends RecipeProvider {
-    public ModRecipeProvider(PackOutput output) {
-        super(output);
+
+
+    public ModRecipeProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pRegistries) {
+        super(pOutput, pRegistries);
     }
 
     @Override
-    protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
+    protected void buildRecipes(RecipeOutput consumer) {
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ethereal_glass,8)
                 .define('G', ModItems.UNSTABLE_INGOT)
-                .define('P', Tags.Items.GLASS)
+                .define('P', Tags.Items.GLASS_BLOCKS_COLORLESS)
                 .pattern("PPP")
                 .pattern("PGP")
                 .pattern("PPP")
-                .unlockedBy("has_glass", has(Tags.Items.GLASS))
+                .unlockedBy("has_glass", has(Tags.Items.GLASS_BLOCKS_COLORLESS))
                 .save(consumer);
         
         String has = "has_unstable_ingot";

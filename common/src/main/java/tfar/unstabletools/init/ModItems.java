@@ -1,6 +1,7 @@
 package tfar.unstabletools.init;
 
 import net.minecraft.world.item.*;
+import tfar.unstabletools.UnstableTier;
 import tfar.unstabletools.item.DivisionSignItem;
 import tfar.unstabletools.item.InactiveDivisionSignItem;
 import tfar.unstabletools.item.UnstableIngotItem;
@@ -14,10 +15,9 @@ import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Set;
 
-import static tfar.unstabletools.UnstableToolsNeoForge.*;
-
 public class ModItems {
 
+    public static final Tier UNSTABLE = new UnstableTier();
     private static final Set<Item> ITEMS = new HashSet<>();
     static Item.Properties properties = new Item.Properties();
     public static final Item ethereal_glass = new BlockItem(ModBlocks.ethereal_glass, properties);
@@ -26,42 +26,52 @@ public class ModItems {
     public static final Item INACTIVE_DIVISION_SIGN = new InactiveDivisionSignItem(new Item.Properties());
     public static final Item division_sign = new DivisionSignItem(new Item.Properties());
     public static final Item stable_division_sign = new StableDivisionSignItem(new Item.Properties());
-    public static final Item UNSTABLE_AXE = new ItemUnstableAxe(UNSTABLE, 9, -3, properties);
+    public static final Item UNSTABLE_AXE = new ItemUnstableAxe(UNSTABLE,  properties);
     public static final Item UNSTABLE_BOW = new UnstableBowItem(properties);
     public static final Item UNSTABLE_FISHING_ROD = new FishingRodItem(properties){  @Override
     public boolean isEnchantable(ItemStack pStack) {
         return true;
     }};
-    public static final Item UNSTABLE_PICKAXE = new PickaxeItem(UNSTABLE, 1, -2.8f, properties){
+    public static final Item UNSTABLE_PICKAXE = new PickaxeItem(UNSTABLE, properties){
         @Override
         public boolean isEnchantable(ItemStack pStack) {
             return true;
         }
     };
-    public static final Item UNSTABLE_HOE = new ItemUnstableHoe(UNSTABLE, -4, 0, properties);
+    public static final Item UNSTABLE_HOE = new ItemUnstableHoe(UNSTABLE, properties);
     public static final Item UNSTABLE_SHEARS = new ItemUnstableShears(properties);
-    public static final Item UNSTABLE_SHOVEL = new ShovelItem(UNSTABLE, 3, -1.5f, properties);
-    public static final Item UNSTABLE_SWORD = new SwordItem(UNSTABLE, 3, -2.4f, properties);
+    public static final Item UNSTABLE_SHOVEL = new ShovelItem(UNSTABLE, properties) {
+        @Override
+        public boolean isEnchantable(ItemStack pStack) {
+            return true;
+        }
+    };
+    public static final Item UNSTABLE_SWORD = new SwordItem(UNSTABLE, properties) {
+        @Override
+        public boolean isEnchantable(ItemStack pStack) {
+            return true;
+        }
+    };
 
-    public static final Item UNSTABLE_HELMET = new ArmorItem(UNSTABLE_ARMOR, ArmorItem.Type.HELMET, properties){
+    public static final Item UNSTABLE_HELMET = new ArmorItem(ModArmorMaterials.UNSTABLE, ArmorItem.Type.HELMET, properties){
         @Override
         public boolean isEnchantable(ItemStack pStack) {
             return true;
         }
     };
-    public static final Item UNSTABLE_CHESTPLATE = new ArmorItem(UNSTABLE_ARMOR, ArmorItem.Type.CHESTPLATE, properties){
+    public static final Item UNSTABLE_CHESTPLATE = new ArmorItem(ModArmorMaterials.UNSTABLE, ArmorItem.Type.CHESTPLATE, properties){
         @Override
         public boolean isEnchantable(ItemStack pStack) {
             return true;
         }
     };
-    public static final Item UNSTABLE_LEGGINGS = new ArmorItem(UNSTABLE_ARMOR, ArmorItem.Type.LEGGINGS, properties){
+    public static final Item UNSTABLE_LEGGINGS = new ArmorItem(ModArmorMaterials.UNSTABLE, ArmorItem.Type.LEGGINGS, properties){
         @Override
         public boolean isEnchantable(ItemStack pStack) {
             return true;
         }
     };
-    public static final Item UNSTABLE_BOOTS = new ArmorItem(UNSTABLE_ARMOR, ArmorItem.Type.BOOTS, properties){
+    public static final Item UNSTABLE_BOOTS = new ArmorItem(ModArmorMaterials.UNSTABLE, ArmorItem.Type.BOOTS, properties){
         @Override
         public boolean isEnchantable(ItemStack pStack) {
             return true;

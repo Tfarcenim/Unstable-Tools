@@ -1,8 +1,12 @@
 package tfar.unstabletools.datagen.data;
 
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.WritableRegistry;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.ValidationContext;
@@ -12,18 +16,20 @@ import tfar.unstabletools.datagen.data.loot.ModBlockLoot;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 public class ModLootTableProvider extends LootTableProvider {
 
-    public ModLootTableProvider(PackOutput pOutput, Set<ResourceLocation> pRequiredTables, List<SubProviderEntry> pSubProviders) {
-        super(pOutput, pRequiredTables, pSubProviders);
+    public ModLootTableProvider(PackOutput pOutput, Set<ResourceKey<LootTable>> pRequiredTables, List<SubProviderEntry> pSubProviders, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+        super(pOutput, pRequiredTables, pSubProviders,lookupProvider);
     }
 
-    public static LootTableProvider create(PackOutput pOutput) {
-        return new ModLootTableProvider(pOutput, BuiltInLootTables.all(), List.of(new SubProviderEntry(ModBlockLoot::new, LootContextParamSets.BLOCK)));
+    public static LootTableProvider create(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+        return new ModLootTableProvider(pOutput, Set.of(), List.of(new SubProviderEntry(ModBlockLoot::new, LootContextParamSets.BLOCK)),lookupProvider);
     }
 
     @Override
-    protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext validationtracker) {
+    protected void validate(WritableRegistry<LootTable> writableregistry, ValidationContext validationcontext, ProblemReporter.Collector problemreporter$collector) {
+
     }
 }

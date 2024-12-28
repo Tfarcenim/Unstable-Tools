@@ -18,7 +18,7 @@ public class ConversionRecipeDisplay extends BasicDisplay {
     public static final ResourceLocation RECIPE_GUI_VANILLA = UnstableTools.id("textures/gui/jei/block_conversion.png");
 
     public ConversionRecipeDisplay(ConversionRecipe recipe) {
-        this(recipe.getFrom(),recipe.getTo());
+        this(recipe.from(),recipe.to());
     }
 
     public ConversionRecipeDisplay(Block from, Block to) {

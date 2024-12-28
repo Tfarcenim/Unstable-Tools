@@ -6,6 +6,7 @@ import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import me.shedaniel.rei.forge.REIPluginClient;
 import net.minecraft.core.registries.BuiltInRegistries;
+import tfar.unstabletools.UnstableTools;
 import tfar.unstabletools.UnstableToolsNeoForge;
 import tfar.unstabletools.crafting.ConversionRecipe;
 import tfar.unstabletools.init.ModItems;
@@ -20,7 +21,7 @@ public class ReiClientPlugin implements REIClientPlugin {
         registry.registerFiller(ConversionRecipe.class, ConversionRecipeDisplay::new);
 
 
-        UnstableToolsNeoForge.instance.manager.getConversionMap().entrySet().stream().sorted(Comparator.comparing(b -> BuiltInRegistries.BLOCK.getKey(b.getKey()))).forEach(set -> {
+        UnstableTools.manager.getConversionMap().entrySet().stream().sorted(Comparator.comparing(b -> BuiltInRegistries.BLOCK.getKey(b.getKey()))).forEach(set -> {
             registry.add(new ConversionRecipeDisplay(EntryStacks.of(set.getKey()), EntryStacks.of(set.getValue())));
         });
 
