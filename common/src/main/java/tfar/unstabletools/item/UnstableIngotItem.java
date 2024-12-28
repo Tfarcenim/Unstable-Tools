@@ -91,6 +91,6 @@ public class UnstableIngotItem extends Item implements IItemColored {
   }
 
   public static boolean checkExplosion(ItemStack stack) {
-    return stack.getItem() instanceof UnstableIngotItem && getTimer(stack) >-1;
+    return stack.getItem() instanceof UnstableIngotItem && stack.has(ModDataComponents.TIMER);
   }
 }

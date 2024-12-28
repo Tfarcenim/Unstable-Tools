@@ -1,7 +1,13 @@
-// 1.21.1	2024-12-28T14:26:57.5887119	Tags for minecraft:item mod id unstabletools
+// 1.21.1	2024-12-28T18:19:57.2967651	Tags for minecraft:item mod id unstabletools
+3a917ee0ce3d467fa3c965af6586302b7546aa70 data/c/tags/item/tools/bow.json
+9f78e95ebed1419f631d99e4bc571fd7db12d08f data/c/tags/item/tools/fishing_rod.json
 64a1c4ebade6de27164497e6e0c4e322ec49ddd8 data/minecraft/tags/item/axes.json
 485370ba19e5e2113cf74002e40c4127f6018e27 data/minecraft/tags/item/beacon_payment_items.json
+fd1c6bae3a7872223d025d2dc0951ef7570e821f data/minecraft/tags/item/chest_armor.json
+0a9dc23e8252a811277fea2dc885e6bf6f1170e6 data/minecraft/tags/item/foot_armor.json
+24c0539351aec77b5080520284c5e828ca5b66cf data/minecraft/tags/item/head_armor.json
 cfb8d96b811347af9259c1065148b8f0bf6c1d89 data/minecraft/tags/item/hoes.json
+49401764a779a453680668492ccad76e3cf52918 data/minecraft/tags/item/leg_armor.json
 a22b69ee11554f38510ccff838672172b2076967 data/minecraft/tags/item/pickaxes.json
 1cfa7da928161fa18c49c7a3ade2f903e187813f data/minecraft/tags/item/shovels.json
 cb0d66209a9d4476b58ede172771dc4eb0b9d369 data/minecraft/tags/item/swords.json

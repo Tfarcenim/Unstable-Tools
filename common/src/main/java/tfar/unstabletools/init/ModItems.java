@@ -53,25 +53,25 @@ public class ModItems {
         }
     };
 
-    public static final Item UNSTABLE_HELMET = new ArmorItem(ModArmorMaterials.UNSTABLE, ArmorItem.Type.HELMET, properties){
+    public static final ArmorItem UNSTABLE_HELMET = new ArmorItem(ModArmorMaterials.UNSTABLE, ArmorItem.Type.HELMET, properties){
         @Override
         public boolean isEnchantable(ItemStack pStack) {
             return true;
         }
     };
-    public static final Item UNSTABLE_CHESTPLATE = new ArmorItem(ModArmorMaterials.UNSTABLE, ArmorItem.Type.CHESTPLATE, properties){
+    public static final ArmorItem UNSTABLE_CHESTPLATE = new ArmorItem(ModArmorMaterials.UNSTABLE, ArmorItem.Type.CHESTPLATE, properties){
         @Override
         public boolean isEnchantable(ItemStack pStack) {
             return true;
         }
     };
-    public static final Item UNSTABLE_LEGGINGS = new ArmorItem(ModArmorMaterials.UNSTABLE, ArmorItem.Type.LEGGINGS, properties){
+    public static final ArmorItem UNSTABLE_LEGGINGS = new ArmorItem(ModArmorMaterials.UNSTABLE, ArmorItem.Type.LEGGINGS, properties){
         @Override
         public boolean isEnchantable(ItemStack pStack) {
             return true;
         }
     };
-    public static final Item UNSTABLE_BOOTS = new ArmorItem(ModArmorMaterials.UNSTABLE, ArmorItem.Type.BOOTS, properties){
+    public static final ArmorItem UNSTABLE_BOOTS = new ArmorItem(ModArmorMaterials.UNSTABLE, ArmorItem.Type.BOOTS, properties){
         @Override
         public boolean isEnchantable(ItemStack pStack) {
             return true;

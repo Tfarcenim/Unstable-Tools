@@ -22,5 +22,6 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.unstable_block);
         this.tag(BlockTags.BEACON_BASE_BLOCKS).add(ModBlocks.unstable_block);
         tag(ModTags.Blocks.INCORRECT_FOR_UNSTABLE_TOOL);
+        tag(BlockTags.NEEDS_DIAMOND_TOOL).add(ModBlocks.unstable_block);
     }
 }

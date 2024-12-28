@@ -78,7 +78,7 @@ public class UnstableTools {
         List<Slot> inventorySlots = container.slots;
         for (Slot slot : inventorySlots) {
             ItemStack stack = slot.getItem();
-            if (!(stack.getItem() instanceof UnstableIngotItem) || slot instanceof ResultSlot || !stack.has(ModDataComponents.TIMER))
+            if (!UnstableIngotItem.checkExplosion(stack) || slot instanceof ResultSlot)
                 continue;
             int timer = stack.get(ModDataComponents.TIMER);
             if (timer <= 0) {

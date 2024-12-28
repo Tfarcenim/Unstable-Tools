@@ -4,6 +4,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -25,5 +26,13 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.PICKAXES).add(ModItems.UNSTABLE_PICKAXE);
         tag(ItemTags.SHOVELS).add(ModItems.UNSTABLE_SHOVEL);
         tag(ItemTags.SWORDS).add(ModItems.UNSTABLE_SWORD);
+
+        tag(ItemTags.HEAD_ARMOR).add(ModItems.UNSTABLE_HELMET);
+        tag(ItemTags.CHEST_ARMOR).add(ModItems.UNSTABLE_CHESTPLATE);
+        tag(ItemTags.LEG_ARMOR).add(ModItems.UNSTABLE_LEGGINGS);
+        tag(ItemTags.FOOT_ARMOR).add(ModItems.UNSTABLE_BOOTS);
+
+        tag(Tags.Items.TOOLS_BOW).add(ModItems.UNSTABLE_BOW);
+        tag(Tags.Items.TOOLS_FISHING_ROD).add(ModItems.UNSTABLE_FISHING_ROD);
     }
 }

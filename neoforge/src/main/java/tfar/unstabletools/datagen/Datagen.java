@@ -6,6 +6,7 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import tfar.unstabletools.datagen.assets.ModItemModelProvider;
 import tfar.unstabletools.datagen.assets.ModLangProvider;
 import tfar.unstabletools.datagen.assets.ModModelProvider;
 import tfar.unstabletools.datagen.data.*;
@@ -31,5 +32,6 @@ public class Datagen {
 
         generator.addProvider(client,new ModModelProvider(output));
         generator.addProvider(client,new ModLangProvider(output));
+        generator.addProvider(client,new ModItemModelProvider(output,helper));
     }
 }

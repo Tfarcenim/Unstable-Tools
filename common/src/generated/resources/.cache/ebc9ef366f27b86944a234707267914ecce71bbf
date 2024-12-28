@@ -1,4 +1,5 @@
-// 1.21.1	2024-12-28T14:26:57.5937162	Tags for minecraft:block mod id unstabletools
+// 1.21.1	2024-12-28T18:19:57.299267	Tags for minecraft:block mod id unstabletools
 b7c42ed6a97c3eb90cbac807ffd6b497dd01fa00 data/minecraft/tags/block/beacon_base_blocks.json
 b7c42ed6a97c3eb90cbac807ffd6b497dd01fa00 data/minecraft/tags/block/mineable/pickaxe.json
+b7c42ed6a97c3eb90cbac807ffd6b497dd01fa00 data/minecraft/tags/block/needs_diamond_tool.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/unstabletools/tags/block/incorrect_for_unstable_tool.json
