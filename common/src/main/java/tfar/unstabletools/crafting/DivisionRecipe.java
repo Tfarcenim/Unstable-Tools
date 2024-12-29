@@ -14,12 +14,7 @@ public class DivisionRecipe extends ShapedRecipe {
   }
 
 
-  /**
-   * Used to check if a recipe matches current crafting inventory
-   *
-   * @param inv
-   * @param worldIn
-   */
+
 /*  @Override
   public boolean matches(CraftingContainer inv, Level worldIn) {
     if (!(inv instanceof TransientCraftingContainer transientCraftingContainer)) return false;

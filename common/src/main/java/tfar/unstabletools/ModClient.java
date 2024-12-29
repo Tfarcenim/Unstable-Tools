@@ -25,7 +25,7 @@ public class ModClient {
       if (living == null) {
         return 0.0F;
       } else {
-        return living.getUseItem() != stack ? 0.0F : (float)(stack.getUseDuration(living) - living.getUseItemRemainingTicks()) / 20.0F;
+        return living.getUseItem() != stack ? 0.0F : (stack.getUseDuration(living) - living.getUseItemRemainingTicks()) / 20.0F;
       }
     };
 
