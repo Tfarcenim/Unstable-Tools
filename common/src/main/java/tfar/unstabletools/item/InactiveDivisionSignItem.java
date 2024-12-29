@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import tfar.unstabletools.TranslationKeys;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 
 public class InactiveDivisionSignItem extends AbstractDivisionSignItem{
@@ -27,7 +26,6 @@ public class InactiveDivisionSignItem extends AbstractDivisionSignItem{
     }
 
     @Override
-    @Nonnull
     public InteractionResult useOn(UseOnContext ctx) {
         Player player = ctx.getPlayer();
         InteractionHand hand = ctx.getHand();

@@ -11,13 +11,15 @@
         "homepage": "https://fabricmc.net/",
         "sources": "https://github.com/FabricMC/fabric-example-mod"
     },
+    "accessWidener": "unstabletools.accesswidener",
     "license": "${license}",
     "icon": "assets/modid/${mod_id}.png",
     "environment": "*",
     "entrypoints": {
         "main": [
           "tfar.unstabletools.UnstableToolsFabric"
-        ]
+        ],
+        "client": ["tfar.unstabletools.ModClientFabric"]
     },
     "mixins": [
         "${mod_id}.mixins.json",

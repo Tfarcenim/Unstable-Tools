@@ -9,7 +9,6 @@ import tfar.unstabletools.Config;
 import tfar.unstabletools.init.ModDataComponents;
 import tfar.unstabletools.init.ModItems;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 
 public class DivisionSignItem extends AbstractDivisionSignItem {
@@ -19,7 +18,6 @@ public class DivisionSignItem extends AbstractDivisionSignItem {
     }
 
     @Override
-    @Nonnull
     public ItemStack getCraftingRemainingItem(ItemStack stack) {
         return damage(stack.copy());
     }

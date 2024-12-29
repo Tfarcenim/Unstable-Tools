@@ -7,7 +7,6 @@ import net.minecraft.world.level.block.Block;
 import tfar.unstabletools.init.ModItems;
 import tfar.unstabletools.init.ModTags;
 
-import javax.annotation.Nonnull;
 
 public class UnstableTier implements Tier {
 
@@ -37,7 +36,6 @@ public class UnstableTier implements Tier {
         return 25;
     }
 
-    @Nonnull
     @Override
     public Ingredient getRepairIngredient() {
         return Ingredient.of(ModItems.UNSTABLE_INGOT);

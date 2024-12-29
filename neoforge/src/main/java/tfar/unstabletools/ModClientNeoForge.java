@@ -24,8 +24,7 @@ public class ModClientNeoForge {
   static void setup(FMLClientSetupEvent event) {
     ItemBlockRenderTypes.setRenderLayer(ModBlocks.unstable_block, RenderType.cutout());
     ItemBlockRenderTypes.setRenderLayer(ModBlocks.ethereal_glass, RenderType.cutout());
-    ItemProperties.register(ModItems.UNSTABLE_FISHING_ROD,ResourceLocation.parse("cast"), ModClient.FISHING);
-    ItemProperties.register(ModItems.UNSTABLE_BOW,ResourceLocation.parse("pull"), ModClient.PULL);
+    ModClient.setup();
   }
 
 }

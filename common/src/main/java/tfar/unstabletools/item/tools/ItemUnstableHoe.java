@@ -15,8 +15,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import tfar.unstabletools.UnstableTools;
 
-import javax.annotation.Nonnull;
-
 public class ItemUnstableHoe extends HoeItem {
   public ItemUnstableHoe(Tier material, Properties properties) {
     super(material,properties);
@@ -25,7 +23,6 @@ public class ItemUnstableHoe extends HoeItem {
   /**
    * Called when this item is used when targetting a Block
    */
-  @Nonnull
   @Override
   public InteractionResult useOn(UseOnContext context) {
     Level level = context.getLevel();

@@ -1,8 +1,11 @@
 package tfar.unstabletools;
 
 import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.FishingRodItem;
+import tfar.unstabletools.init.ModItems;
 
 public class ModClient {
     public static final ClampedItemPropertyFunction FISHING =  (stack, p_174586_, living, p_174588_) -> {
@@ -25,4 +28,10 @@ public class ModClient {
         return living.getUseItem() != stack ? 0.0F : (float)(stack.getUseDuration(living) - living.getUseItemRemainingTicks()) / 20.0F;
       }
     };
+
+
+    public static void setup() {
+        ItemProperties.register(ModItems.UNSTABLE_FISHING_ROD, ResourceLocation.parse("cast"), ModClient.FISHING);
+        ItemProperties.register(ModItems.UNSTABLE_BOW,ResourceLocation.parse("pull"), ModClient.PULL);
+    }
 }

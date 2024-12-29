@@ -6,7 +6,6 @@ import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.level.Level;
 import tfar.unstabletools.init.ModRecipeSerializer;
 
-import javax.annotation.Nonnull;
 
 public class DivisionRecipe extends ShapedRecipe {
 
@@ -39,7 +38,6 @@ public class DivisionRecipe extends ShapedRecipe {
     return super.matches(pInput, pLevel);
   }
 
-  @Nonnull
   @Override
   public RecipeSerializer<?> getSerializer() {
     return ModRecipeSerializer.division;
