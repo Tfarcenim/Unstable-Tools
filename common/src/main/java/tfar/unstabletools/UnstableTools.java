@@ -13,7 +13,6 @@ import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.ResultSlot;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.CreativeModeTab;
@@ -23,7 +22,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import org.apache.logging.log4j.util.Lazy;
@@ -102,7 +100,7 @@ public class UnstableTools {
     }
 
     public static void livingDeath(LivingEntity sacrifice, DamageSource source) {
-        if (!(source.getEntity() instanceof Player player)) return;
+        if (!(source.getEntity() instanceof ServerPlayer player)) return;
         Level world = sacrifice.level();
         BlockPos pos = sacrifice.blockPosition();
         if (!world.canSeeSkyFromBelowWater(pos)) return;
@@ -119,21 +117,19 @@ public class UnstableTools {
 
         long time = world.getLevelData().getDayTime() % 24000;
         if (time <= 17500 || time > 18500) return;
-
         NonNullList<ItemStack> mainInventory = player.getInventory().items;
         for (int i = 0; i < mainInventory.size(); i++) {
             final ItemStack stack = mainInventory.get(i);
-            if (stack.getItem() != ModItems.division_sign)
+            if (stack.getItem() != ModItems.INACTIVE_DIVISION_SIGN)
                 continue;
             ItemStack newStack = new ItemStack(ModItems.division_sign);
             newStack.set(ModDataComponents.USES, Config.ServerConfig.uses.get());
             mainInventory.set(i, newStack);
         }
-        if (!world.isClientSide) {
-            LightningBolt entity = EntityType.LIGHTNING_BOLT.create(world);
-            entity.moveTo(sacrifice.getX(), sacrifice.getY(), sacrifice.getZ());
-            world.addFreshEntity(entity);
-        }
+        LightningBolt entity = EntityType.LIGHTNING_BOLT.create(world);
+        entity.moveTo(sacrifice.getX(), sacrifice.getY(), sacrifice.getZ());
+        world.addFreshEntity(entity);
+
         if (UnstableTools.cursed_earth && Config.ServerConfig.cursed_earth_integration.get()) {
             for (int x = pos.getX() - 7; x < pos.getX() + 8; x++)
                 for (int z = pos.getZ() - 7; z < pos.getZ() + 8; z++) {
@@ -151,16 +147,16 @@ public class UnstableTools {
     }
 
 
-    public static void containerClosed(AbstractContainerMenu menu,Player player) {
-            boolean explode = false;
-            for (Slot slot : menu.slots) {
-                ItemStack stack = slot.getItem();
-                if (!UnstableIngotItem.checkExplosion(stack) || slot instanceof ResultSlot) continue;
-                slot.set(ItemStack.EMPTY);
-                explode = true;
-            }
-            if (!explode) return;
-            UnstableIngotItem.boom(player);
+    public static void containerClosed(AbstractContainerMenu menu, Player player) {
+        boolean explode = false;
+        for (Slot slot : menu.slots) {
+            ItemStack stack = slot.getItem();
+            if (!UnstableIngotItem.checkExplosion(stack) || slot instanceof ResultSlot) continue;
+            slot.set(ItemStack.EMPTY);
+            explode = true;
+        }
+        if (!explode) return;
+        UnstableIngotItem.boom(player);
     }
 
     @SuppressWarnings("unchecked")
