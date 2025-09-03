@@ -1,7 +1,9 @@
 package tfar.unstabletools.init;
 
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.util.Unit;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.Unbreakable;
 import tfar.unstabletools.UnstableTier;
 import tfar.unstabletools.item.DivisionSignItem;
 import tfar.unstabletools.item.InactiveDivisionSignItem;
@@ -29,6 +31,7 @@ public class ModItems {
     public static final Item stable_division_sign = new StableDivisionSignItem(new Item.Properties());
     public static final Item UNSTABLE_AXE = new ItemUnstableAxe(UNSTABLE,  new Item.Properties()
             .attributes(AxeItem.createAttributes(UNSTABLE, 5, -3))
+            .component(DataComponents.UNBREAKABLE, new Unbreakable(true))
     );
     public static final Item UNSTABLE_BOW = new UnstableBowItem(new Item.Properties().stacksTo(1));
     public static final Item UNSTABLE_FISHING_ROD = new FishingRodItem(new Item.Properties().stacksTo(1)){  @Override
@@ -36,31 +39,42 @@ public class ModItems {
         return true;
     }};
     public static final Item UNSTABLE_PICKAXE = new PickaxeItem(UNSTABLE, new Item.Properties()
-            .attributes(PickaxeItem.createAttributes(UNSTABLE, 1, -2.8F))){
+            .attributes(PickaxeItem.createAttributes(UNSTABLE, 1, -2.8F))
+            .component(DataComponents.UNBREAKABLE, new Unbreakable(true))
+    ){
         @Override
         public boolean isEnchantable(ItemStack pStack) {
             return true;
         }
     };
     public static final Item UNSTABLE_HOE = new ItemUnstableHoe(UNSTABLE, new Item.Properties()
-            .attributes(HoeItem.createAttributes(UNSTABLE, -3, 0)));
+            .attributes(HoeItem.createAttributes(UNSTABLE, -3, 0))
+            .component(DataComponents.UNBREAKABLE, new Unbreakable(true))
+    );
     public static final Item UNSTABLE_SHEARS = new ItemUnstableShears(new Item.Properties()
-            .component(DataComponents.TOOL, ShearsItem.createToolProperties()));
+            .component(DataComponents.TOOL, ShearsItem.createToolProperties())
+            .component(DataComponents.UNBREAKABLE, new Unbreakable(true))
+    );
     public static final Item UNSTABLE_SHOVEL = new ShovelItem(UNSTABLE,  new Item.Properties()
             .attributes(ShovelItem.createAttributes(UNSTABLE, 1.5F, -3))
+            .component(DataComponents.UNBREAKABLE, new Unbreakable(true))
     ) {
         @Override
         public boolean isEnchantable(ItemStack pStack) {
             return true;
         }
     };
-    public static final Item UNSTABLE_SWORD = new SwordItem(UNSTABLE, new Item.Properties().
-            attributes(SwordItem.createAttributes(UNSTABLE, 3, -2.4F))) {
+    public static final Item UNSTABLE_SWORD = new SwordItem(UNSTABLE, new Item.Properties()
+            .attributes(SwordItem.createAttributes(UNSTABLE, 3, -2.4F))
+            .component(DataComponents.UNBREAKABLE, new Unbreakable(true))
+    ) {
         @Override
         public boolean isEnchantable(ItemStack pStack) {
             return true;
         }
     };
+
+
 
     public static final ArmorItem UNSTABLE_HELMET = new ArmorItem(ModArmorMaterials.UNSTABLE,
             ArmorItem.Type.HELMET, new Item.Properties().stacksTo(1)){
