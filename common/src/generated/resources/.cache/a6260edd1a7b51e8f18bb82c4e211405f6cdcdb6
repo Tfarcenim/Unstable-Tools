@@ -1,9 +1,11 @@
-// 1.21.1	2024-12-28T18:19:57.2967651	Tags for minecraft:item mod id unstabletools
+// 1.21.1	2025-09-12T21:16:52.1664881	Tags for minecraft:item mod id unstabletools
 3a917ee0ce3d467fa3c965af6586302b7546aa70 data/c/tags/item/tools/bow.json
 9f78e95ebed1419f631d99e4bc571fd7db12d08f data/c/tags/item/tools/fishing_rod.json
 64a1c4ebade6de27164497e6e0c4e322ec49ddd8 data/minecraft/tags/item/axes.json
 485370ba19e5e2113cf74002e40c4127f6018e27 data/minecraft/tags/item/beacon_payment_items.json
 fd1c6bae3a7872223d025d2dc0951ef7570e821f data/minecraft/tags/item/chest_armor.json
+3a917ee0ce3d467fa3c965af6586302b7546aa70 data/minecraft/tags/item/enchantable/bow.json
+f5efc99dacac29d26c37300862aa468cc9ab11ef data/minecraft/tags/item/enchantable/mining.json
 0a9dc23e8252a811277fea2dc885e6bf6f1170e6 data/minecraft/tags/item/foot_armor.json
 24c0539351aec77b5080520284c5e828ca5b66cf data/minecraft/tags/item/head_armor.json
 cfb8d96b811347af9259c1065148b8f0bf6c1d89 data/minecraft/tags/item/hoes.json

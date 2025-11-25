@@ -27,6 +27,9 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.SHOVELS).add(ModItems.UNSTABLE_SHOVEL);
         tag(ItemTags.SWORDS).add(ModItems.UNSTABLE_SWORD);
 
+        tag(ItemTags.BOW_ENCHANTABLE).add(ModItems.UNSTABLE_BOW);
+        tag(ItemTags.MINING_ENCHANTABLE).add(ModItems.UNSTABLE_SHEARS);
+
         tag(ItemTags.HEAD_ARMOR).add(ModItems.UNSTABLE_HELMET);
         tag(ItemTags.CHEST_ARMOR).add(ModItems.UNSTABLE_CHESTPLATE);
         tag(ItemTags.LEG_ARMOR).add(ModItems.UNSTABLE_LEGGINGS);
