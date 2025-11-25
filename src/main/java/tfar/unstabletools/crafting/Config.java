@@ -21,7 +21,7 @@ public class Config {
 
   public static class ServerConfig {
 
-    public static ForgeConfigSpec.ConfigValue<List<String>> allowed_containers;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> allowed_containers;
     public static ForgeConfigSpec.BooleanValue cursed_earth_integration;
     public static ForgeConfigSpec.IntValue timer;
     public static ForgeConfigSpec.IntValue uses;
@@ -34,7 +34,7 @@ public class Config {
       allowed_containers = builder
               .comment("Allowed Container Types")
               .translation("text.unstabletools.config.allowed_containers")
-              .define("containers", strings, List.class::isInstance);
+              .defineList("containers", strings,object -> true);
       cursed_earth_integration = builder
               .comment("Enable integration with Cursed Earth")
               .translation("text.unstabletools.config.cursed_earth_integration")

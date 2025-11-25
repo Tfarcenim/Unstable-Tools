@@ -63,7 +63,7 @@ public class ItemUnstableIngot extends Item implements IItemColored {
     if (e.phase == TickEvent.Phase.START) return;
 
     AbstractContainerMenu container = e.player.containerMenu;
-    MenuType<?> type = ObfuscationReflectionHelper.getPrivateValue(AbstractContainerMenu.class,container,"menuType");
+    MenuType<?> type = container.menuType;//use the field because getter throws
     if (type == null || !Config.ServerConfig.allowed_containers.get().contains(type.getRegistryName().toString()))return;
 
     Level world = e.player.level;
