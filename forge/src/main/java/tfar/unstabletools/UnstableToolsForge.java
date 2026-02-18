@@ -142,6 +142,7 @@ public class UnstableToolsForge {
       event.register(Registries.ITEM, UnstableTools.id("unstable_hoe"), () -> ModItems.UNSTABLE_HOE);
 
       event.register(Registries.ITEM, UnstableTools.id("unstable_fishing_rod"), () -> ModItems.UNSTABLE_FISHING_ROD);
+      event.register(Registries.ITEM, UnstableTools.id("unstable_elytra"), () -> ModItems.UNSTABLE_ELYTRA);
       event.register(Registries.ITEM, UnstableTools.id("unstable_bow"), () -> ModItems.UNSTABLE_BOW);
 
       event.register(Registries.ITEM, UnstableTools.id("unstable_helmet"), () -> ModItems.UNSTABLE_HELMET);

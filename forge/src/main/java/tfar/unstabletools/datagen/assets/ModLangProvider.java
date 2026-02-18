@@ -27,6 +27,7 @@ public class ModLangProvider extends LanguageProvider {
 
         add("item.unstabletools.unstable_paxel", "Unstable Paxel");
         add("item.unstabletools.unstable_fishing_rod", "Unstable Fishing Rod");
+        add("item.unstabletools.unstable_elytra", "Unstable Elytra");
         add("item.unstabletools.unstable_bow", "Unstable Bow");
 
         add("item.unstabletools.unstable_pickaxe", "Unstable Pickaxe");

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "unstabletools:unstable_ingot"
+    },
+    "E": {
+      "item": "minecraft:elytra"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "pattern": [
+    "#O#",
+    " E "
+  ],
+  "result": {
+    "item": "unstabletools:unstable_elytra"
+  },
+  "show_notification": true
+}

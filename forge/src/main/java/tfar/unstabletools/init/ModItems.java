@@ -32,6 +32,17 @@ public class ModItems {
     public boolean isEnchantable(ItemStack pStack) {
         return true;
     }};
+    public static final Item UNSTABLE_ELYTRA = new ElytraItem(properties){
+        @Override
+        public boolean isEnchantable(ItemStack pStack) {
+            return true;
+        }
+
+        @Override
+        public boolean canElytraFly(ItemStack stack, net.minecraft.world.entity.LivingEntity entity) {
+            return true;
+        }
+    };
     public static final Item UNSTABLE_PICKAXE = new PickaxeItem(UNSTABLE, 1, -2.8f, properties){
         @Override
         public boolean isEnchantable(ItemStack pStack) {
