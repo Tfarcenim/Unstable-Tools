@@ -1,10 +1,15 @@
 package tfar.unstabletools;
 
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.FishingRodItem;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import tfar.unstabletools.init.ModBlocks;
@@ -50,6 +55,17 @@ public class Client {
   public static void setup(FMLClientSetupEvent event) {
     ItemProperties.register(ModItems.UNSTABLE_FISHING_ROD,new ResourceLocation("cast"),FISHING);
     ItemProperties.register(ModItems.UNSTABLE_BOW,new ResourceLocation("pull"),PULL);
+  }
+
+  @SubscribeEvent
+  public static void registerElytraLayer(EntityRenderersEvent.AddLayers event) {
+    EntityModelSet entityModels = event.getEntityModels();
+    event.getSkins().forEach(skin -> {
+      LivingEntityRenderer<? extends Player, ? extends EntityModel<? extends Player>> renderer = event.getSkin(skin);
+      if (renderer instanceof PlayerRenderer playerRenderer) {
+        playerRenderer.addLayer(new UnstableElytraLayer(playerRenderer, entityModels));
+      }
+    });
   }
 
 }
